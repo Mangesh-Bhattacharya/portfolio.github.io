@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangesh Bhattacharya | Cybersecurity & Cloud Professional</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--accent-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* About */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-chip {
+            background-color: var(--light-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .cert-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cert-content {
+            padding: 1.5rem;
+        }
+        
+        .cert-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .cert-org {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cert-date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cert-desc {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .project-desc {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background-color: var(--light-color);
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        /* TryHackMe */
+        .thm-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .thm-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .thm-certs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .thm-cert-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        /* Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Mangesh Bhattacharya</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#tryhackme">TryHackMe</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Cybersecurity & Cloud Professional</h1>
+                <p>Passionate about securing digital infrastructure and building robust cloud solutions</p>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hello! I'm Mangesh Bhattacharya</h3>
+                    <p>I'm a cybersecurity and cloud computing professional with a diverse skill set spanning ethical hacking, cloud security, network administration, and automation. My journey in IT began with networking fundamentals and has expanded to include cloud technologies, security practices, and programming.</p>
+                    <p>I'm passionate about continuously learning and applying new technologies to solve complex problems. My certifications demonstrate my commitment to professional development across multiple domains.</p>
+                    
+                    <div class="skills">
+                        <span class="skill-chip">Cybersecurity</span>
+                        <span class="skill-chip">Cloud Computing</span>
+                        <span class="skill-chip">Python</span>
+                        <span class="skill-chip">Azure</span>
+                        <span class="skill-chip">Networking</span>
+                        <span class="skill-chip">Ethical Hacking</span>
+                        <span class="skill-chip">Automation</span>
+                        <span class="skill-chip">DevSecOps</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder for profile image -->
+                    <div style="background-color: #ddd; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                        <p>Profile Image</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" style="background-color: #f5f5f5;">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <!-- AZ-900 -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3 class="cert-title">Microsoft Azure Fundamentals</h3>
+                        <p class="cert-org">Microsoft</p>
+                        <p class="cert-date">January 2021</p>
+                        <p class="cert-desc">Demonstrated foundational knowledge of cloud services and how those services are provided with Microsoft Azure.</p>
+                        <a href="#" class="btn">View Certificate</a>
+                    </div>
+                </div>
+                
+                <!-- CCSK -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3 class="cert-title">Certificate of Cloud Security Knowledge v4</h3>
+                        <p class="cert-org">Cloud Security Alliance</p>
+                        <p class="cert-date">June 2023</p>
+                        <p class="cert-desc">Comprehensive knowledge of cloud security encompassing CSA guidance, Cloud Controls Matrix, and ENISA recommendations.</p>
+                        <a href="#" class="btn">View Certificate</a>
+                    </div>
+                </div>
+                
+                <!-- CCNA -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3 class="cert-title">Cisco Certified Network Associate</h3>
+                        <p class="cert-org">Cisco</p>
+                        <p class="cert-date">July 2020</p>
+                        <p class="cert-desc">Demonstrated knowledge and skills related to network fundamentals, network access, IP connectivity, IP services, security fundamentals, and automation.</p>
+                        <a href="#" class="btn">View Certificate</a>
+                    </div>
+                </div>
+                
+                <!-- CEH -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3 class="cert-title">Ethical Hacker</h3>
+                        <p class="cert-org">Cisco Networking Academy</p>
+                        <p class="cert-date">February 2025</p>
+                        <p class="cert-desc">Proficient in methodological ethical hacking, penetration testing, vulnerability assessment, and security tool classification.</p>
+                        <a href="#" class="btn">View Certificate</a>
+                    </div>
+                </div>
+                
+                <!-- Google IT Automation -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3 class="cert-title">Google IT Automation with Python</h3>
+                        <p class="cert-org">Google</p>
+                        <p class="cert-date">July 2020</p>
+                        <p class="cert-desc">Six-course professional certificate focused on Python, Git, troubleshooting, debugging, configuration management, and automation.</p>
+                        <a href="#" class="btn">View Certificate</a>
+                    </div>
+                </div>
+                
+                <!-- PCEP -->
+                <div class="cert-card">
+                    <div class="cert-content">
+                        <h3 class="cert-title">Certified Entry-Level Python Programmer</h3>
+                        <p class="cert-org">Python Institute</p>
+                        <p class="cert-date">July 2021</p>
+                        <p class="cert-desc">Demonstrated proficiency in Python programming fundamentals including data types, control flow, data collections, and functions.</p>
+                        <a href="#" class="btn">View Certificate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">GitHub Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img">Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Network Security Scanner</h3>
+                        <p class="project-desc">A Python-based tool that scans networks for vulnerabilities and generates detailed security reports.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Network Security</span>
+                            <span class="tech-tag">Nmap</span>
+                        </div>
+                        <a href="https://github.com/Mangesh-Bhattacharya/network-scanner" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img">Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Cloud Security Automation</h3>
+                        <p class="project-desc">Azure automation scripts for security compliance checks and resource configuration validation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        <a href="https://github.com/Mangesh-Bhattacharya/cloud-security" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img">Project Image</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Penetration Testing Toolkit</h3>
+                        <p class="project-desc">A collection of custom scripts and tools for ethical hacking and penetration testing activities.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Bash</span>
+                            <span class="tech-tag">Security</span>
+                        </div>
+                        <a href="https://github.com/Mangesh-Bhattacharya/penetration-tools" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://github.com/Mangesh-Bhattacharya" class="btn">View All Projects on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TryHackMe Section -->
+    <section id="tryhackme" style="background-color: #f5f5f5;">
+        <div class="container">
+            <h2 class="section-title">TryHackMe Achievements</h2>
+            <div class="thm-content">
+                <p>I actively develop my cybersecurity skills through TryHackMe's hands-on learning platform. Here's an overview of my progress and achievements:</p>
+                
+                <div class="thm-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <p>Rooms Completed</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <p>Learning Paths</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Top 5%</div>
+                        <p>Global Ranking</p>
+                    </div>
+                </div>
+                
+                <h3>Learning Paths Completed</h3>
+                <div class="thm-certs">
+                    <div class="thm-cert-card">
+                        <h4>Pre Security</h4>
+                        <p>Completed: Jan 2025</p>
+                        <p>Duration: 7h 28m</p>
+                    </div>
+                    <div class="thm-cert-card">
+                        <h4>Jr Penetration Tester</h4>
+                        <p>Completed: Dec 2024</p>
+                    </div>
+                    <div class="thm-cert-card">
+                        <h4>Red Teaming</h4>
+                        <p>Completed: Jul 2024</p>
+                        <p>Duration: 50h 20m</p>
+                    </div>
+                    <div class="thm-cert-card">
+                        <h4>CompTIA Pentest+</h4>
+                        <p>Completed: Mar 2025</p>
+                        <p>Duration: 32h 55m</p>
+                    </div>
+                    <div class="thm-cert-card">
+                        <h4>DevSecOps</h4>
+                        <p>Completed: Jul 2025</p>
+                        <p>Duration: 26h 45m</p>
+                    </div>
+                    <div class="thm-cert-card">
+                        <h4>Advanced Endpoint Investigations</h4>
+                        <p>Completed: Jul 2025</p>
+                        <p>Duration: 51h 45m</p>
+                    </div>
+                </div>
+                
+                <a href="https://tryhackme.com/p/TheOrbiter" class="btn" style="margin-top: 2rem;">View My TryHackMe Profile</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">@</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>mangeshb20@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">in</div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>linkedin.com/in/mangesh-bhattacharya</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">gh</div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <p>github.com/Mangesh-Bhattacharya</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">thm</div>
+                        <div>
+                            <h4>TryHackMe</h4>
+                            <p>tryhackme.com/p/TheOrbiter</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mangesh Bhattacharya. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/Mangesh-Bhattacharya" class="social-link">GH</a>
+                <a href="https://www.linkedin.com/" class="social-link">IN</a>
+                <a href="https://tryhackme.com/p/TheOrbiter" class="social-link">THM</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
