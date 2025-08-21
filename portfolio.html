@@ -1,1006 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mangesh Bhattacharya | Cybersecurity & Cloud Professional</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-bg: #0a0e17;
-            --secondary-bg: #131b2b;
-            --card-bg: #1a243b;
-            --accent-blue: #2563eb;
-            --accent-teal: #0ea5e9;
-            --accent-purple: #7c3aed;
-            --text-primary: #f8fafc;
-            --text-secondary: #cbd5e1;
-            --text-muted: #64748b;
-            --border-color: #334155;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: rgba(10, 14, 23, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.2rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: color 0.3s;
-            text-decoration: none;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent-teal);
-        }
-        
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 10rem 0 6rem;
-            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.15), transparent 400px),
-                        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.1), transparent 400px);
-        }
-        
-        .hero-content {
-            max-width: 800px;
-        }
-        
-        .hero-badge {
-            display: inline-block;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--accent-blue);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(37, 99, 235, 0.3);
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--text-primary), var(--accent-teal));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
-            color: white;
-            padding: 0.8rem 1.8rem;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--accent-blue);
-            color: var(--accent-blue);
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background: rgba(37, 99, 235, 0.1);
-        }
-        
-        /* Sections */
-        section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .section-title p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* About */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .about-text h3 {
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-        }
-        
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .skill-chip {
-            background-color: var(--card-bg);
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid var(--border-color);
-        }
-        
-        /* Stats */
-        .stats {
-            background-color: var(--secondary-bg);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        .stat-card {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            color: var(--text-secondary);
-        }
-        
-        /* Certifications */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .cert-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .cert-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .cert-content {
-            padding: 1.8rem;
-        }
-        
-        .cert-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-teal);
-        }
-        
-        .cert-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .cert-org {
-            color: var(--accent-blue);
-            font-weight: 500;
-            margin-bottom: 0.8rem;
-            display: block;
-        }
-        
-        .cert-date {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
-        }
-        
-        .cert-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .project-img {
-            height: 180px;
-            background: linear-gradient(120deg, var(--accent-purple), var(--accent-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-        
-        .project-content {
-            padding: 1.8rem;
-        }
-        
-        .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .project-desc {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .tech-tag {
-            background-color: rgba(37, 99, 235, 0.1);
-            color: var(--accent-blue);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-        
-        /* TryHackMe */
-        .thm-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .thm-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-        
-        .stat-card {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .thm-certs {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-        
-        .thm-cert-card {
-            background-color: var(--card-bg);
-            padding: 1.8rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .thm-cert-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        /* Contact */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-        
-        .contact-icon {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: white;
-        }
-        
-        .contact-form {
-            background-color: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .form-group {
-            margin-bottom: 1.8rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.6rem;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.9rem;
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            color: var(--text-primary);
-            font-family: inherit;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--secondary-bg);
-            padding: 4rem 0 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .footer-about {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1.2rem;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: var(--card-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal));
-            transform: translateY(-3px);
-        }
-        
-        .footer-heading {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent-teal);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .about-content,
-            .contact-content,
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.3rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-                margin-top: 1rem;
-                display: block;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mangesh Bhattacharya | Cybersecurity & Cloud Professional</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-bg: #0a0e17;
+      --secondary-bg: #131b2b;
+      --card-bg: #1a243b;
+      --accent-blue: #2563eb;
+      --accent-teal: #0ea5e9;
+      --accent-purple: #7c3aed;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --border-color: #334155;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter','Segoe UI',sans-serif; background-color: var(--primary-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    header { background-color: rgba(10, 14, 23, 0.95); backdrop-filter: blur(10px); padding: 1.2rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
+    nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a { color: var(--text-secondary); font-weight: 500; transition: color .3s; text-decoration: none; }
+    .nav-links a:hover { color: var(--accent-teal); }
+    .menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+    .hero { padding: 10rem 0 6rem; background: radial-gradient(circle at top right, rgba(37,99,235,.15), transparent 400px), radial-gradient(circle at bottom left, rgba(14,165,233,.1), transparent 400px); }
+    .hero-content { max-width: 800px; }
+    .hero-badge { display: inline-block; background: rgba(37,99,235,.1); color: var(--accent-blue); padding: .5rem 1rem; border-radius: 20px; font-size: .9rem; margin-bottom: 1.5rem; border: 1px solid rgba(37,99,235,.3); }
+    .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 1.5rem; background: linear-gradient(90deg, var(--text-primary), var(--accent-teal)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2.5rem; max-width: 600px; }
+    .btn { display: inline-block; background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal)); color: white; padding: .8rem 1.8rem; border-radius: 6px; font-weight: 600; transition: all .3s; text-decoration: none; border: none; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(37,99,235,.25); }
+    .btn-outline { background: transparent; border: 1px solid var(--accent-blue); color: var(--accent-blue); margin-left: 1rem; }
+    .btn-outline:hover { background: rgba(37,99,235,.1); }
+
+    section { padding: 5rem 0; }
+    .section-title { text-align: center; margin-bottom: 4rem; }
+    .section-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .section-title p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text h3 { margin-bottom: 1.5rem; font-size: 2rem; }
+    .about-text p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .skills { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+    .skill-chip { background-color: var(--card-bg); padding: .6rem 1.2rem; border-radius: 20px; font-size: .9rem; border: 1px solid var(--border-color); }
+
+    .stats { background-color: var(--secondary-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .stat-card { text-align: center; }
+    .stat-number { font-size: 2.5rem; font-weight: 700; background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: .5rem; }
+    .stat-label { color: var(--text-secondary); }
+
+    .certifications-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 2rem; }
+    .cert-card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); transition: transform .3s, box-shadow .3s; }
+    .cert-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,.3); }
+    .cert-content { padding: 1.8rem; }
+    .cert-icon { font-size: 2rem; margin-bottom: 1rem; color: var(--accent-teal); }
+    .cert-title { font-size: 1.3rem; margin-bottom: .8rem; }
+    .cert-org { color: var(--accent-blue); font-weight: 500; margin-bottom: .8rem; display: block; }
+    .cert-date { color: var(--text-muted); font-size: .9rem; margin-bottom: 1.2rem; }
+    .cert-desc { color: var(--text-secondary); font-size: .95rem; margin-bottom: 1.5rem; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 2rem; }
+    .project-card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); transition: transform .3s, box-shadow .3s; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,.3); }
+    .project-img { height: 180px; background: linear-gradient(120deg, var(--accent-purple), var(--accent-blue)); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; }
+    .project-content { padding: 1.8rem; }
+    .project-title { font-size: 1.3rem; margin-bottom: .8rem; }
+    .project-desc { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: .95rem; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.5rem; }
+    .tech-tag { background-color: rgba(37,99,235,.1); color: var(--accent-blue); padding: .3rem .8rem; border-radius: 15px; font-size: .8rem; }
+
+    .thm-content { text-align: center; max-width: 800px; margin: 0 auto; }
+    .thm-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem; margin: 3rem 0; }
+    .stat-card { background-color: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); }
+    .thm-certs { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .thm-cert-card { background-color: var(--card-bg); padding: 1.8rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: transform .3s; }
+    .thm-cert-card:hover { transform: translateY(-5px); }
+
+    .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 2rem; }
+    .contact-item { display: flex; align-items: center; gap: 1.2rem; }
+    .contact-icon { width: 55px; height: 55px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: white; }
+    .contact-form { background-color: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-color); }
+    .form-group { margin-bottom: 1.8rem; }
+    .form-group label { display: block; margin-bottom: .6rem; font-weight: 500; }
+    .form-control { width: 100%; padding: .9rem; background-color: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-family: inherit; }
+    textarea.form-control { min-height: 150px; resize: vertical; }
+
+    footer { background-color: var(--secondary-bg); padding: 4rem 0 2rem; border-top: 1px solid var(--border-color); }
+    .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .footer-about { color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .social-links { display: flex; gap: 1.2rem; }
+    .social-link { width: 40px; height: 40px; background-color: var(--card-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all .3s; color: var(--text-primary); text-decoration: none; }
+    .social-link:hover { background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal)); transform: translateY(-3px); }
+    .footer-heading { font-size: 1.2rem; margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: .8rem; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color .3s; }
+    .footer-links a:hover { color: var(--accent-teal); }
+    .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-muted); }
+
+    @media (max-width: 992px) {
+      .about-content, .contact-content, .footer-content { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.8rem; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-btn { display: block; }
+      .hero h1 { font-size: 2.3rem; }
+      .hero p { font-size: 1.1rem; }
+      .section-title h2 { font-size: 2rem; }
+      .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .btn-outline { margin-left: 0; margin-top: 1rem; display: block; }
+    }
+
+    /* ===== Orbiter Chatbot styles ===== */
+    .orb-launcher { position: fixed; right: 22px; bottom: 22px; z-index: 1100; border-radius: 16px; border: 1px solid rgba(34,211,238,.35); background: linear-gradient(90deg, rgba(37,99,235,.25), rgba(14,165,233,.25)); color: #c7f9ff; padding: 12px 14px; cursor: pointer; backdrop-filter: blur(8px); box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .orb-panel { position: fixed; right: 22px; bottom: 86px; width: 380px; max-height: 72vh; display: none; flex-direction: column; z-index: 1100; border-radius: 16px; background: rgba(19,27,43,.9); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+    .orb-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); color: #bff; }
+    .orb-close { background: transparent; border: 1px solid rgba(255,255,255,.15); color: #bff; border-radius: 10px; padding: 6px; cursor: pointer; }
+    .orb-msgs { padding: 10px 12px; overflow-y: auto; flex: 1; }
+    .orb-row { margin: 8px 0; display: flex; }
+    .orb-bubble { padding: 10px 12px; border-radius: 14px; max-width: 80%; font-size: 14px; line-height: 1.45; }
+    .orb-bot { background: #0f172a; border: 1px solid var(--border-color); color: var(--text-secondary); }
+    .orb-user { background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); color: white; margin-left: auto; }
+    .orb-quick { display: flex; flex-wrap: wrap; gap: 8px; padding: 6px 12px; }
+    .orb-chip { font-size: 12px; border: 1px solid rgba(255,255,255,.12); color: #dff; background: rgba(255,255,255,.05); border-radius: 999px; padding: 6px 8px; cursor: pointer; }
+    .orb-input { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,.08); }
+    .orb-text { flex: 1; background: #0b1220; border: 1px solid #203040; color: #e8fbff; border-radius: 10px; padding: 10px; }
+    .orb-send { background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal)); color: white; border: none; border-radius: 10px; padding: 10px 12px; cursor: pointer; }
+    .orb-actions { display: flex; gap: 8px; padding: 0 12px 10px; }
+    .orb-action { font-size: 12px; background: rgba(255,255,255,.06); color: #cfe; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 6px 8px; cursor: pointer; }
+    @media (max-width: 480px){ .orb-panel{ width: calc(100% - 24px); right: 12px; bottom: 84px; } }
+  </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">MangeshB</div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#tryhackme">TryHackMe</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="menu-btn"><i class="fas fa-bars"></i></button>
-            </nav>
-        </div>
-    </header>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">MangeshB</div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#tryhackme">TryHackMe</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-btn"><i class="fas fa-bars"></i></button>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-badge">Cybersecurity & Cloud Professional</span>
-                <h1>Securing Digital Infrastructure Through Innovative Solutions</h1>
-                <p>I specialize in cybersecurity, cloud computing, and ethical hacking with a passion for building secure, scalable systems and identifying vulnerabilities.</p>
-                <div>
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
-                </div>
-            </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">Cybersecurity & Cloud Professional</span>
+        <h1>Securing Digital Infrastructure Through Innovative Solutions</h1>
+        <p>I specialize in cybersecurity, cloud computing, and ethical hacking with a passion for building secure, scalable systems and identifying vulnerabilities.</p>
+        <div>
+          <a href="#projects" class="btn">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Get In Touch</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Certifications</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Projects</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">TryHackMe Points</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-            </div>
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">15+</div><div class="stat-label">Certifications</div></div>
+        <div class="stat-card"><div class="stat-number">50+</div><div class="stat-label">Projects</div></div>
+        <div class="stat-card"><div class="stat-number">1000+</div><div class="stat-label">TryHackMe Points</div></div>
+        <div class="stat-card"><div class="stat-number">5</div><div class="stat-label">Years Experience</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title"><h2>About Me</h2><p>My journey in cybersecurity and cloud computing</p></div>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>Hello! I'm Mangesh Bhattacharya</h3>
+          <p>I'm a cybersecurity and cloud computing professional with a diverse skill set spanning ethical hacking, cloud security, network administration, and automation. My journey in IT began with networking fundamentals and has expanded to include cloud technologies, security practices, and programming.</p>
+          <p>I'm passionate about continuously learning and applying new technologies to solve complex problems. My certifications demonstrate my commitment to professional development across multiple domains.</p>
+          <div class="skills">
+            <span class="skill-chip">Cybersecurity</span>
+            <span class="skill-chip">Cloud Computing</span>
+            <span class="skill-chip">Python</span>
+            <span class="skill-chip">Azure</span>
+            <span class="skill-chip">Networking</span>
+            <span class="skill-chip">Ethical Hacking</span>
+            <span class="skill-chip">Automation</span>
+            <span class="skill-chip">DevSecOps</span>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Me</h2>
-                <p>My journey in cybersecurity and cloud computing</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Hello! I'm Mangesh Bhattacharya</h3>
-                    <p>I'm a cybersecurity and cloud computing professional with a diverse skill set spanning ethical hacking, cloud security, network administration, and automation. My journey in IT began with networking fundamentals and has expanded to include cloud technologies, security practices, and programming.</p>
-                    <p>I'm passionate about continuously learning and applying new technologies to solve complex problems. My certifications demonstrate my commitment to professional development across multiple domains.</p>
-                    
-                    <div class="skills">
-                        <span class="skill-chip">Cybersecurity</span>
-                        <span class="skill-chip">Cloud Computing</span>
-                        <span class="skill-chip">Python</span>
-                        <span class="skill-chip">Azure</span>
-                        <span class="skill-chip">Networking</span>
-                        <span class="skill-chip">Ethical Hacking</span>
-                        <span class="skill-chip">Automation</span>
-                        <span class="skill-chip">DevSecOps</span>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <!-- Placeholder for profile image -->
-                    <div style="background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple)); height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-user-shield" style="font-size: 8rem; opacity: 0.7; color: white;"></i>
-                    </div>
-                </div>
-            </div>
+        <div class="about-image">
+          <div style="background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple)); height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-user-shield" style="font-size: 8rem; opacity: .7; color: white;"></i>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" style="background-color: var(--secondary-bg);">
-        <div class="container">
-            <div class="section-title">
-                <h2>Certifications</h2>
-                <p>Professional credentials that validate my expertise</p>
-            </div>
-            <div class="certifications-grid">
-                <!-- AZ-900 -->
-                <div class="cert-card">
-                    <div class="cert-content">
-                        <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
-                        <h3 class="cert-title">Microsoft Azure Fundamentals</h3>
-                        <span class="cert-org">Microsoft</span>
-                        <div class="cert-date">January 2021</div>
-                        <p class="cert-desc">Demonstrated foundational knowledge of cloud services and how those services are provided with Microsoft Azure.</p>
-                        <a href="#" class="btn">View Certificate</a>
-                    </div>
-                </div>
-                
-                <!-- CCSK -->
-                <div class="cert-card">
-                    <div class="cert-content">
-                        <div class="cert-icon"><i class="fas fa-cloud"></i></div>
-                        <h3 class="cert-title">Certificate of Cloud Security Knowledge v4</h3>
-                        <span class="cert-org">Cloud Security Alliance</span>
-                        <div class="cert-date">June 2023</div>
-                        <p class="cert-desc">Comprehensive knowledge of cloud security encompassing CSA guidance, Cloud Controls Matrix, and ENISA recommendations.</p>
-                        <a href="#" class="btn">View Certificate</a>
-                    </div>
-                </div>
-                
-                <!-- CCNA -->
-                <div class="cert-card">
-                    <div class="cert-content">
-                        <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
-                        <h3 class="cert-title">Cisco Certified Network Associate</h3>
-                        <span class="cert-org">Cisco</span>
-                        <div class="cert-date">July 2020</div>
-                        <p class="cert-desc">Demonstrated knowledge and skills related to network fundamentals, network access, IP connectivity, IP services, security fundamentals, and automation.</p>
-                        <a href="#" class="btn">View Certificate</a>
-                    </div>
-                </div>
-            </div>
+  <!-- Certifications Section -->
+  <section id="certifications" style="background-color: var(--secondary-bg);">
+    <div class="container">
+      <div class="section-title"><h2>Certifications</h2><p>Professional credentials that validate my expertise</p></div>
+      <div class="certifications-grid">
+        <div class="cert-card"><div class="cert-content"><div class="cert-icon"><i class="fab fa-microsoft"></i></div><h3 class="cert-title">Microsoft Azure Fundamentals</h3><span class="cert-org">Microsoft</span><div class="cert-date">January 2021</div><p class="cert-desc">Demonstrated foundational knowledge of cloud services and how those services are provided with Microsoft Azure.</p><a href="#" class="btn">View Certificate</a></div></div>
+        <div class="cert-card"><div class="cert-content"><div class="cert-icon"><i class="fas fa-cloud"></i></div><h3 class="cert-title">Certificate of Cloud Security Knowledge v4</h3><span class="cert-org">Cloud Security Alliance</span><div class="cert-date">June 2023</div><p class="cert-desc">Comprehensive knowledge of cloud security encompassing CSA guidance, Cloud Controls Matrix, and ENISA recommendations.</p><a href="#" class="btn">View Certificate</a></div></div>
+        <div class="cert-card"><div class="cert-content"><div class="cert-icon"><i class="fas fa-network-wired"></i></div><h3 class="cert-title">Cisco Certified Network Associate</h3><span class="cert-org">Cisco</span><div class="cert-date">July 2020</div><p class="cert-desc">Demonstrated knowledge and skills related to network fundamentals, network access, IP connectivity, IP services, security fundamentals, and automation.</p><a href="#" class="btn">View Certificate</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title"><h2>GitHub Projects</h2><p>Some of my recent work and contributions</p></div>
+      <div class="projects-grid">
+        <div class="project-card"><div class="project-img"><i class="fas fa-shield-alt"></i></div><div class="project-content"><h3 class="project-title">Network Security Scanner</h3><p class="project-desc">A Python-based tool that scans networks for vulnerabilities and generates detailed security reports.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Network Security</span><span class="tech-tag">Nmap</span></div><a href="https://github.com/Mangesh-Bhattacharya/network-scanner" class="btn">View Project</a></div></div>
+        <div class="project-card"><div class="project-img"><i class="fas fa-cloud"></i></div><div class="project-content"><h3 class="project-title">Cloud Security Automation</h3><p class="project-desc">Azure automation scripts for security compliance checks and resource configuration validation.</p><div class="project-tech"><span class="tech-tag">Azure</span><span class="tech-tag">Python</span><span class="tech-tag">Automation</span></div><a href="https://github.com/Mangesh-Bhattacharya/cloud-security" class="btn">View Project</a></div></div>
+        <div class="project-card"><div class="project-img"><i class="fas fa-bug"></i></div><div class="project-content"><h3 class="project-title">Penetration Testing Toolkit</h3><p class="project-desc">A collection of custom scripts and tools for ethical hacking and penetration testing activities.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Bash</span><span class="tech-tag">Security</span></div><a href="https://github.com/Mangesh-Bhattacharya/penetration-tools" class="btn">View Project</a></div></div>
+      </div>
+      <div style="text-align:center;margin-top:3rem;"><a href="https://github.com/Mangesh-Bhattacharya" class="btn">View All Projects on GitHub</a></div>
+    </div>
+  </section>
+
+  <!-- TryHackMe Section -->
+  <section id="tryhackme" style="background-color: var(--secondary-bg);">
+    <div class="container">
+      <div class="section-title"><h2>TryHackMe Achievements</h2><p>My progress and accomplishments on the TryHackMe platform</p></div>
+      <div class="thm-content">
+        <p>I actively develop my cybersecurity skills through TryHackMe's hands-on learning platform. Here's an overview of my progress and achievements:</p>
+        <div class="thm-stats">
+          <div class="stat-card"><div class="stat-number">50+</div><p>Rooms Completed</p></div>
+          <div class="stat-card"><div class="stat-number">15</div><p>Learning Paths</p></div>
+          <div class="stat-card"><div class="stat-number">Top 5%</div><p>Global Ranking</p></div>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-title">
-                <h2>GitHub Projects</h2>
-                <p>Some of my recent work and contributions</p>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Network Security Scanner</h3>
-                        <p class="project-desc">A Python-based tool that scans networks for vulnerabilities and generates detailed security reports.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Network Security</span>
-                            <span class="tech-tag">Nmap</span>
-                        </div>
-                        <a href="https://github.com/Mangesh-Bhattacharya/network-scanner" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Cloud Security Automation</h3>
-                        <p class="project-desc">Azure automation scripts for security compliance checks and resource configuration validation.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Azure</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Automation</span>
-                        </div>
-                        <a href="https://github.com/Mangesh-Bhattacharya/cloud-security" class="btn">View Project</a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-img">
-                        <i class="fas fa-bug"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Penetration Testing Toolkit</h3>
-                        <p class="project-desc">A collection of custom scripts and tools for ethical hacking and penetration testing activities.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Bash</span>
-                            <span class="tech-tag">Security</span>
-                        </div>
-                        <a href="https://github.com/Mangesh-Bhattacharya/penetration-tools" class="btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="https://github.com/Mangesh-Bhattacharya" class="btn">View All Projects on GitHub</a>
-            </div>
+        <h3>Learning Paths Completed</h3>
+        <div class="thm-certs">
+          <div class="thm-cert-card"><h4>Pre Security</h4><p>Completed: Jan 2025</p><p>Duration: 7h 28m</p></div>
+          <div class="thm-cert-card"><h4>Jr Penetration Tester</h4><p>Completed: Dec 2024</p></div>
+          <div class="thm-cert-card"><h4>Red Teaming</h4><p>Completed: Jul 2024</p><p>Duration: 50h 20m</p></div>
+          <div class="thm-cert-card"><h4>CompTIA Pentest+</h4><p>Completed: Mar 2025</p><p>Duration: 32h 55m</p></div>
         </div>
-    </section>
+        <a href="https://tryhackme.com/p/TheOrbiter" class="btn" style="margin-top:3rem;">View My TryHackMe Profile</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- TryHackMe Section -->
-    <section id="tryhackme" style="background-color: var(--secondary-bg);">
-        <div class="container">
-            <div class="section-title">
-                <h2>TryHackMe Achievements</h2>
-                <p>My progress and accomplishments on the TryHackMe platform</p>
-            </div>
-            <div class="thm-content">
-                <p>I actively develop my cybersecurity skills through TryHackMe's hands-on learning platform. Here's an overview of my progress and achievements:</p>
-                
-                <div class="thm-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">50+</div>
-                        <p>Rooms Completed</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">15</div>
-                        <p>Learning Paths</p>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">Top 5%</div>
-                        <p>Global Ranking</p>
-                    </div>
-                </div>
-                
-                <h3>Learning Paths Completed</h3>
-                <div class="thm-certs">
-                    <div class="thm-cert-card">
-                        <h4>Pre Security</h4>
-                        <p>Completed: Jan 2025</p>
-                        <p>Duration: 7h 28m</p>
-                    </div>
-                    <div class="thm-cert-card">
-                        <h4>Jr Penetration Tester</h4>
-                        <p>Completed: Dec 2024</p>
-                    </div>
-                    <div class="thm-cert-card">
-                        <h4>Red Teaming</h4>
-                        <p>Completed: Jul 2024</p>
-                        <p>Duration: 50h 20m</p>
-                    </div>
-                    <div class="thm-cert-card">
-                        <h4>CompTIA Pentest+</h4>
-                        <p>Completed: Mar 2025</p>
-                        <p>Duration: 32h 55m</p>
-                    </div>
-                </div>
-                
-                <a href="https://tryhackme.com/p/TheOrbiter" class="btn" style="margin-top: 3rem;">View My TryHackMe Profile</a>
-            </div>
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title"><h2>Get In Touch</h2><p>Let's discuss how I can help with your security needs</p></div>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p>mangeshb20@gmail.com</p></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fab fa-linkedin"></i></div><div><h4>LinkedIn</h4><p>linkedin.com/in/mangesh-bhattacharya</p></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fab fa-github"></i></div><div><h4>GitHub</h4><p>github.com/Mangesh-Bhattacharya</p></div></div>
+          <div class="contact-item"><div class="contact-icon"><i class="fas fa-shield-alt"></i></div><div><h4>TryHackMe</h4><p>tryhackme.com/p/TheOrbiter</p></div></div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Let's discuss how I can help with your security needs</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>mangeshb20@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <div>
-                            <h4>LinkedIn</h4>
-                            <p>linkedin.com/in/mangesh-bhattacharya</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div>
-                            <h4>GitHub</h4>
-                            <p>github.com/Mangesh-Bhattacharya</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div>
-                            <h4>TryHackMe</h4>
-                            <p>tryhackme.com/p/TheOrbiter</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group"><label for="name">Name</label><input type="text" id="name" class="form-control" required></div>
+            <div class="form-group"><label for="email">Email</label><input type="email" id="email" class="form-control" required></div>
+            <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" class="form-control" required></div>
+            <div class="form-group"><label for="message">Message</label><textarea id="message" class="form-control" required></textarea></div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">MangeshB</div>
-                    <p class="footer-about">Cybersecurity and cloud professional with expertise in ethical hacking, network security, and cloud infrastructure.</p>
-                    <div class="social-links">
-                        <a href="https://github.com/Mangesh-Bhattacharya" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://tryhackme.com/p/TheOrbiter" class="social-link"><i class="fas fa-shield-alt"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links-container">
-                    <h4 class="footer-heading">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#certifications">Certifications</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#tryhackme">TryHackMe</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links-container">
-                    <h4 class="footer-heading">Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">TryHackMe</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Resume</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Mangesh Bhattacharya. All Rights Reserved.</p>
-            </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">MangeshB</div>
+          <p class="footer-about">Cybersecurity and cloud professional with expertise in ethical hacking, network security, and cloud infrastructure.</p>
+          <div class="social-links">
+            <a href="https://github.com/Mangesh-Bhattacharya" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/mangesh-bhattacharya/" class="social-link"><i class="fab fa-linkedin"></i></a>
+            <a href="https://tryhackme.com/p/TheOrbiter" class="social-link"><i class="fas fa-shield-alt"></i></a>
+          </div>
         </div>
-    </footer>
+        <div class="footer-links-container"><h4 class="footer-heading">Quick Links</h4><ul class="footer-links"><li><a href="#about">About</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#projects">Projects</a></li><li><a href="#tryhackme">TryHackMe</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div class="footer-links-container"><h4 class="footer-heading">Resources</h4><ul class="footer-links"><li><a href="#">GitHub</a></li><li><a href="#">TryHackMe</a></li><li><a href="#">Blog</a></li><li><a href="#">Resume</a></li></ul></div>
+      </div>
+      <div class="copyright"><p>&copy; 2025 Mangesh Bhattacharya. All Rights Reserved.</p></div>
+    </div>
+  </footer>
 
-    <script>
-        // Simple form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Mobile menu toggle
-        const menuBtn = document.querySelector('.menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        menuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
+  <!-- ===== Orbiter Chatbot (email connected) ===== -->
+  <button class="orb-launcher" id="orbOpenBtn"><i class="fa-regular fa-comment-dots"></i> &nbsp; Ask Orbiter</button>
+  <div class="orb-panel" id="orbPanel" aria-live="polite">
+    <div class="orb-header">
+      <div><strong>Orbiter</strong> — Portfolio Assistant</div>
+      <button class="orb-close" id="orbCloseBtn" aria-label="Close chat"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="orb-quick" id="orbQuick">
+      <button class="orb-chip" data-q="Tell me about Mangesh">About</button>
+      <button class="orb-chip" data-q="Show projects with links and evidence">Projects</button>
+      <button class="orb-chip" data-q="What did you study at Seneca and Humber?">Education</button>
+      <button class="orb-chip" data-q="Share your LinkedIn">LinkedIn</button>
+      <button class="orb-chip" data-q="Show TryHackMe achievements">TryHackMe</button>
+    </div>
+    <div class="orb-msgs" id="orbMsgs"></div>
+    <div class="orb-actions">
+      <button class="orb-action" id="orbEmailBtn"><i class="fa-regular fa-paper-plane"></i> Email transcript</button>
+      <button class="orb-action" id="orbContactBtn"><i class="fa-regular fa-envelope"></i> Email Mangesh</button>
+    </div>
+    <div class="orb-input">
+      <input id="orbInput" class="orb-text" placeholder="Ask a question…" />
+      <button id="orbSend" class="orb-send">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // ===== Contact form -> mailto: integration =====
+    const ORB_EMAIL = 'mangesh.bhattacharya@ontariotechu.ca';
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Website contact';
+      const message = document.getElementById('message').value.trim();
+      const body = `From: ${name} (\\${email})\\n\\n${message}`;
+      window.location.href = `mailto:${ORB_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      this.reset();
+    });
+
+    // ===== Smooth scroll for anchor links =====
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(ev){
+        const id = this.getAttribute('href');
+        if(id === '#') return;
+        const el = document.querySelector(id);
+        if(!el) return;
+        ev.preventDefault();
+        window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+      })
+    });
+
+    // ===== Mobile menu =====
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    menuBtn.addEventListener('click', ()=>{ navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex'; });
+
+    // ===== Orbiter Chatbot =====
+    const ORB_LINKEDIN = 'https://www.linkedin.com/in/mangesh-bhattacharya/';
+    const ORB_GITHUB = 'https://github.com/Mangesh-Bhattacharya';
+    const ORB_TRYHACKME = 'https://tryhackme.com/p/TheOrbiter';
+
+    const panel = document.getElementById('orbPanel');
+    const openBtn = document.getElementById('orbOpenBtn');
+    const closeBtn = document.getElementById('orbCloseBtn');
+    const msgs = document.getElementById('orbMsgs');
+    const input = document.getElementById('orbInput');
+    const sendBtn = document.getElementById('orbSend');
+    const emailBtn = document.getElementById('orbEmailBtn');
+    const contactBtn = document.getElementById('orbContactBtn');
+
+    function showPanel(){ panel.style.display = 'flex'; input.focus(); }
+    function hidePanel(){ panel.style.display = 'none'; }
+    openBtn.addEventListener('click', showPanel);
+    closeBtn.addEventListener('click', hidePanel);
+
+    const history = [];
+    function say(role, html){
+      history.push({ role, text: html.replace(/<[^>]*>/g,'') });
+      const row = document.createElement('div');
+      row.className = 'orb-row';
+      const bubble = document.createElement('div');
+      bubble.className = 'orb-bubble ' + (role === 'bot' ? 'orb-bot' : 'orb-user');
+      bubble.innerHTML = html;
+      row.appendChild(bubble);
+      msgs.appendChild(row);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function evidenceList(){
+      const items = [
+        { name:'Network Security Scanner', url:'https://github.com/Mangesh-Bhattacharya/network-scanner' },
+        { name:'Cloud Security Automation', url:'https://github.com/Mangesh-Bhattacharya/cloud-security' },
+        { name:'Penetration Testing Toolkit', url:'https://github.com/Mangesh-Bhattacharya/penetration-tools' },
+      ];
+      return items.map(i=>`<b>${i.name}</b> — <a target="_blank" href="${i.url}">repo</a> · <a target="_blank" href="${i.url}/commits">commits</a>`).join('<br/>');
+    }
+
+    function respond(q){
+      const t = q.toLowerCase();
+      if(/linkedin/.test(t)) return `LinkedIn: <a target="_blank" href="${ORB_LINKEDIN}">${ORB_LINKEDIN}</a>`;
+      if(/contact|email|reach|phone/.test(t)) return `Email <a href="mailto:${ORB_EMAIL}">${ORB_EMAIL}</a>`;
+      if(/project|repo|github|evidence|code/.test(t)) return evidenceList() + `<br/><br/>See more on <a target="_blank" href="${ORB_GITHUB}">GitHub</a>.`;
+      if(/tryhackme|red team|pre[^a-z]?security|ctf|hackathon/.test(t)) return `TryHackMe: <a target="_blank" href="${ORB_TRYHACKME}">${ORB_TRYHACKME}</a>`;
+      if(/education|seneca|humber|degree|diploma|college|university/.test(t)) return `<b>Seneca College</b> — Bachelor of IT (Cybersecurity)<br/><b>Humber College</b> — Network Engineering Diploma`;
+      if(/cert|ccna|ccsk|azure|pcep|google|coursera/.test(t)) return `Key certifications: CCSK, CCNA, AZ-900, Google IT Automation with Python, PCEP, TryHackMe learning paths.`;
+      if(/hello|hi|hey|help|who/.test(t)) return `Hi! I'm Orbiter. Ask about projects (with evidence), certifications, education (Seneca/Humber), TryHackMe, LinkedIn, or how to contact Mangesh.`;
+      return `Try: "projects with evidence", "education", "LinkedIn", "TryHackMe", or "contact".`;
+    }
+
+    function send(){
+      const q = input.value.trim(); if(!q) return; input.value='';
+      say('user', q);
+      const a = respond(q);
+      say('bot', a);
+    }
+    sendBtn.addEventListener('click', send);
+    input.addEventListener('keydown', e=>{ if(e.key==='Enter') send(); });
+
+    // Quick chips
+    document.getElementById('orbQuick').addEventListener('click', e=>{
+      if(e.target.matches('.orb-chip')){ input.value = e.target.getAttribute('data-q'); send(); }
+    });
+
+    // Email transcript
+    emailBtn.addEventListener('click', ()=>{
+      if(!history.length) return;
+      const lines = history.map(m=>`${m.role.toUpperCase()}: ${m.text}`).join('\n');
+      const subject = 'Website chat transcript';
+      const body = lines + '\n\n— Sent from mangeshbhattacharya.dev site chat';
+      window.location.href = `mailto:${ORB_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+
+    // Email directly
+    contactBtn.addEventListener('click', ()=>{
+      const subject = 'Inquiry from portfolio chatbot';
+      const body = 'Hi Mangesh,\n\nI have a quick question about your work.';
+      window.location.href = `mailto:${ORB_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+
+    // Greeting
+    say('bot', `Hi! I\'m <b>Orbiter</b>. Ask me about projects, certifications, education (Seneca, Humber), TryHackMe, LinkedIn, or how to contact Mangesh.`);
+  </script>
 </body>
 </html>
