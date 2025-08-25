@@ -21,6 +21,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter','Segoe UI',sans-serif; background-color: var(--primary-bg); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
     .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
     header { background-color: rgba(10, 14, 23, 0.95); backdrop-filter: blur(10px); padding: 1.2rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-color); }
     nav { display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
@@ -29,6 +31,7 @@
     .nav-links a:hover { color: var(--accent-teal); }
     .menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
 
+    /* Hero */
     .hero { padding: 10rem 0 6rem; background: radial-gradient(circle at top right, rgba(37,99,235,.15), transparent 400px), radial-gradient(circle at bottom left, rgba(14,165,233,.1), transparent 400px); }
     .hero-content { max-width: 800px; }
     .hero-badge { display: inline-block; background: rgba(37,99,235,.1); color: var(--accent-blue); padding: .5rem 1rem; border-radius: 20px; font-size: .9rem; margin-bottom: 1.5rem; border: 1px solid rgba(37,99,235,.3); }
@@ -44,18 +47,21 @@
     .section-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
     .section-title p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
 
+    /* About */
     .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .about-text h3 { margin-bottom: 1.5rem; font-size: 2rem; }
     .about-text p { color: var(--text-secondary); margin-bottom: 1.5rem; }
     .skills { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
     .skill-chip { background-color: var(--card-bg); padding: .6rem 1.2rem; border-radius: 20px; font-size: .9rem; border: 1px solid var(--border-color); }
 
+    /* Stats */
     .stats { background-color: var(--secondary-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
     .stat-card { text-align: center; }
     .stat-number { font-size: 2.5rem; font-weight: 700; background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: .5rem; }
     .stat-label { color: var(--text-secondary); }
 
+    /* Certifications */
     .certifications-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 2rem; }
     .cert-card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); transition: transform .3s, box-shadow .3s; }
     .cert-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,.3); }
@@ -66,6 +72,7 @@
     .cert-date { color: var(--text-muted); font-size: .9rem; margin-bottom: 1.2rem; }
     .cert-desc { color: var(--text-secondary); font-size: .95rem; margin-bottom: 1.5rem; }
 
+    /* Projects */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 2rem; }
     .project-card { background-color: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); transition: transform .3s, box-shadow .3s; }
     .project-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,.3); }
@@ -76,6 +83,7 @@
     .project-tech { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 1.5rem; }
     .tech-tag { background-color: rgba(37,99,235,.1); color: var(--accent-blue); padding: .3rem .8rem; border-radius: 15px; font-size: .8rem; }
 
+    /* TryHackMe */
     .thm-content { text-align: center; max-width: 800px; margin: 0 auto; }
     .thm-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem; margin: 3rem 0; }
     .stat-card { background-color: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); }
@@ -83,6 +91,7 @@
     .thm-cert-card { background-color: var(--card-bg); padding: 1.8rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: transform .3s; }
     .thm-cert-card:hover { transform: translateY(-5px); }
 
+    /* Contact */
     .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
     .contact-info { display: flex; flex-direction: column; gap: 2rem; }
     .contact-item { display: flex; align-items: center; gap: 1.2rem; }
@@ -93,6 +102,7 @@
     .form-control { width: 100%; padding: .9rem; background-color: var(--secondary-bg); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-primary); font-family: inherit; }
     textarea.form-control { min-height: 150px; resize: vertical; }
 
+    /* Footer */
     footer { background-color: var(--secondary-bg); padding: 4rem 0 2rem; border-top: 1px solid var(--border-color); }
     .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
     .footer-logo { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
@@ -107,6 +117,7 @@
     .footer-links a:hover { color: var(--accent-teal); }
     .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); color: var(--text-muted); }
 
+    /* Responsive */
     @media (max-width: 992px) {
       .about-content, .contact-content, .footer-content { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2.8rem; }
@@ -155,7 +166,7 @@
           <li><a href="#tryhackme">TryHackMe</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="menu-btn"><i class="fas fa-bars"></i></button>
+        <button class="menu-btn" type="button"><i class="fas fa-bars"></i></button>
       </nav>
     </div>
   </header>
@@ -221,9 +232,36 @@
     <div class="container">
       <div class="section-title"><h2>Certifications</h2><p>Professional credentials that validate my expertise</p></div>
       <div class="certifications-grid">
-        <div class="cert-card"><div class="cert-content"><div class="cert-icon"><i class="fab fa-microsoft"></i></div><h3 class="cert-title">Microsoft Azure Fundamentals</h3><span class="cert-org">Microsoft</span><div class="cert-date">January 2021</div><p class="cert-desc">Demonstrated foundational knowledge of cloud services and how those services are provided with Microsoft Azure.</p><a href="#" class="btn">View Certificate</a></div></div>
-        <div class="cert-card"><div class="cert-content"><div class="cert-icon"><i class="fas fa-cloud"></i></div><h3 class="cert-title">Certificate of Cloud Security Knowledge v4</h3><span class="cert-org">Cloud Security Alliance</span><div class="cert-date">June 2023</div><p class="cert-desc">Comprehensive knowledge of cloud security encompassing CSA guidance, Cloud Controls Matrix, and ENISA recommendations.</p><a href="#" class="btn">View Certificate</a></div></div>
-        <div class="cert-card"><div class="cert-content"><div class="cert-icon"><i class="fas fa-network-wired"></i></div><h3 class="cert-title">Cisco Certified Network Associate</h3><span class="cert-org">Cisco</span><div class="cert-date">July 2020</div><p class="cert-desc">Demonstrated knowledge and skills related to network fundamentals, network access, IP connectivity, IP services, security fundamentals, and automation.</p><a href="#" class="btn">View Certificate</a></div></div>
+        <div class="cert-card">
+          <div class="cert-content">
+            <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
+            <h3 class="cert-title">Microsoft Azure Fundamentals</h3>
+            <span class="cert-org">Microsoft</span>
+            <div class="cert-date">January 2021</div>
+            <p class="cert-desc">Foundational knowledge of cloud services and how those services are provided with Microsoft Azure.</p>
+            <a href="#" class="btn">View Certificate</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-content">
+            <div class="cert-icon"><i class="fas fa-cloud"></i></div>
+            <h3 class="cert-title">Certificate of Cloud Security Knowledge v4</h3>
+            <span class="cert-org">Cloud Security Alliance</span>
+            <div class="cert-date">June 2023</div>
+            <p class="cert-desc">CSA guidance, Cloud Controls Matrix, and ENISA recommendations.</p>
+            <a href="#" class="btn">View Certificate</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-content">
+            <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
+            <h3 class="cert-title">Cisco Certified Network Associate</h3>
+            <span class="cert-org">Cisco</span>
+            <div class="cert-date">July 2020</div>
+            <p class="cert-desc">Networking fundamentals, IP connectivity/services, security, and automation.</p>
+            <a href="#" class="btn">View Certificate</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -233,11 +271,43 @@
     <div class="container">
       <div class="section-title"><h2>GitHub Projects</h2><p>Some of my recent work and contributions</p></div>
       <div class="projects-grid">
-        <div class="project-card"><div class="project-img"><i class="fas fa-shield-alt"></i></div><div class="project-content"><h3 class="project-title">Network Security Scanner</h3><p class="project-desc">A Python-based tool that scans networks for vulnerabilities and generates detailed security reports.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Network Security</span><span class="tech-tag">Nmap</span></div><a href="https://github.com/Mangesh-Bhattacharya/network-scanner" class="btn">View Project</a></div></div>
-        <div class="project-card"><div class="project-img"><i class="fas fa-cloud"></i></div><div class="project-content"><h3 class="project-title">Cloud Security Automation</h3><p class="project-desc">Azure automation scripts for security compliance checks and resource configuration validation.</p><div class="project-tech"><span class="tech-tag">Azure</span><span class="tech-tag">Python</span><span class="tech-tag">Automation</span></div><a href="https://github.com/Mangesh-Bhattacharya/cloud-security" class="btn">View Project</a></div></div>
-        <div class="project-card"><div class="project-img"><i class="fas fa-bug"></i></div><div class="project-content"><h3 class="project-title">Penetration Testing Toolkit</h3><p class="project-desc">A collection of custom scripts and tools for ethical hacking and penetration testing activities.</p><div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Bash</span><span class="tech-tag">Security</span></div><a href="https://github.com/Mangesh-Bhattacharya/penetration-tools" class="btn">View Project</a></div></div>
+        <div class="project-card">
+          <div class="project-img"><i class="fas fa-shield-alt"></i></div>
+          <div class="project-content">
+            <h3 class="project-title">Network Security Scanner</h3>
+            <p class="project-desc">Python tool that scans networks for vulnerabilities and generates reports.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span><span class="tech-tag">Network Security</span><span class="tech-tag">Nmap</span>
+            </div>
+            <a href="https://github.com/Mangesh-Bhattacharya/network-scanner" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img"><i class="fas fa-cloud"></i></div>
+          <div class="project-content">
+            <h3 class="project-title">Cloud Security Automation</h3>
+            <p class="project-desc">Azure automation for security compliance checks and resource validation.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Azure</span><span class="tech-tag">Python</span><span class="tech-tag">Automation</span>
+            </div>
+            <a href="https://github.com/Mangesh-Bhattacharya/cloud-security" class="btn">View Project</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img"><i class="fas fa-bug"></i></div>
+          <div class="project-content">
+            <h3 class="project-title">Penetration Testing Toolkit</h3>
+            <p class="project-desc">Scripts and tooling for ethical hacking and penetration testing.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span><span class="tech-tag">Bash</span><span class="tech-tag">Security</span>
+            </div>
+            <a href="https://github.com/Mangesh-Bhattacharya/penetration-tools" class="btn">View Project</a>
+          </div>
+        </div>
       </div>
-      <div style="text-align:center;margin-top:3rem;"><a href="https://github.com/Mangesh-Bhattacharya" class="btn">View All Projects on GitHub</a></div>
+      <div style="text-align:center;margin-top:3rem;">
+        <a href="https://github.com/Mangesh-Bhattacharya" class="btn">View All Projects on GitHub</a>
+      </div>
     </div>
   </section>
 
@@ -270,10 +340,34 @@
       <div class="section-title"><h2>Get In Touch</h2><p>Let's discuss how I can help with your security needs</p></div>
       <div class="contact-content">
         <div class="contact-info">
-          <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p>mangeshb20@gmail.com</p></div></div>
-          <div class="contact-item"><div class="contact-icon"><i class="fab fa-linkedin"></i></div><div><h4>LinkedIn</h4><p>linkedin.com/in/mangesh-bhattacharya</p></div></div>
-          <div class="contact-item"><div class="contact-icon"><i class="fab fa-github"></i></div><div><h4>GitHub</h4><p>github.com/Mangesh-Bhattacharya</p></div></div>
-          <div class="contact-item"><div class="contact-icon"><i class="fas fa-shield-alt"></i></div><div><h4>TryHackMe</h4><p>tryhackme.com/p/TheOrbiter</p></div></div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <p>mangesh.bhattacharya@ontariotechu.ca</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+            <div>
+              <h4>LinkedIn</h4>
+              <p>linkedin.com/in/mangesh-bhattacharya</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-github"></i></div>
+            <div>
+              <h4>GitHub</h4>
+              <p>github.com/Mangesh-Bhattacharya</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <h4>TryHackMe</h4>
+              <p>tryhackme.com/p/TheOrbiter</p>
+            </div>
+          </div>
         </div>
         <div class="contact-form">
           <form id="contactForm">
@@ -301,14 +395,22 @@
             <a href="https://tryhackme.com/p/TheOrbiter" class="social-link"><i class="fas fa-shield-alt"></i></a>
           </div>
         </div>
-        <div class="footer-links-container"><h4 class="footer-heading">Quick Links</h4><ul class="footer-links"><li><a href="#about">About</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#projects">Projects</a></li><li><a href="#tryhackme">TryHackMe</a></li><li><a href="#contact">Contact</a></li></ul></div>
-        <div class="footer-links-container"><h4 class="footer-heading">Resources</h4><ul class="footer-links"><li><a href="#">GitHub</a></li><li><a href="#">TryHackMe</a></li><li><a href="#">Blog</a></li><li><a href="#">Resume</a></li></ul></div>
+        <div class="footer-links-container"><h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#projects">Projects</a></li><li><a href="#tryhackme">TryHackMe</a></li><li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-container"><h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">GitHub</a></li><li><a href="#">TryHackMe</a></li><li><a href="#">Blog</a></li><li><a href="#">Resume</a></li>
+          </ul>
+        </div>
       </div>
       <div class="copyright"><p>&copy; 2025 Mangesh Bhattacharya. All Rights Reserved.</p></div>
     </div>
   </footer>
 
-  <!-- ===== Orbiter Chatbot (email connected) ===== -->
+  <!-- ===== Orbiter Chatbot (email connected & AI-style agent) ===== -->
   <button class="orb-launcher" id="orbOpenBtn" type="button">
     <i class="fa-regular fa-comment-dots"></i>&nbsp; Ask Orbiter
   </button>
@@ -322,7 +424,7 @@
     </div>
 
     <div class="orb-quick" id="orbQuick">
-      <button class="orb-chip" data-q="Tell me about Mangesh" type="button">About</button>
+      <button class="orb-chip" data-q="Introduce Mangesh Bhattacharya" type="button">Introduce</button>
       <button class="orb-chip" data-q="Show projects with links and evidence" type="button">Projects</button>
       <button class="orb-chip" data-q="What did you study at Seneca and Humber?" type="button">Education</button>
       <button class="orb-chip" data-q="Share your LinkedIn" type="button">LinkedIn</button>
@@ -344,20 +446,54 @@
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // ---------- CONFIG ----------
-    const ORB_EMAIL = 'mangesh.bhattacharya@ontariotechu.ca';
-    const ORB_LINKEDIN = 'https://www.linkedin.com/in/mangesh-bhattacharya/';
-    const ORB_GITHUB = 'https://github.com/Mangesh-Bhattacharya';
+    /* =========================
+       CONFIG & KNOWLEDGE BASE
+    ========================== */
+    const ORB_EMAIL     = 'mangesh.bhattacharya@ontariotechu.ca';
+    const ORB_LINKEDIN  = 'https://www.linkedin.com/in/mangesh-bhattacharya/';
+    const ORB_GITHUB    = 'https://github.com/Mangesh-Bhattacharya';
     const ORB_TRYHACKME = 'https://tryhackme.com/p/TheOrbiter';
     const isVSCodeWebview = /webview|vscode/i.test(location.href);
+
+    const KB = {
+      fullName: 'Mangesh Bhattacharya',
+      title: 'Cybersecurity & Cloud Professional',
+      summary:
+        'Focuses on detection engineering, red teaming, and cloud security. Builds automated detection pipelines, telemetry, and secure cloud configurations.',
+      education: [
+        { school: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
+        { school: 'Humber College', program: 'Network Engineering Diploma' },
+      ],
+      certifications: [
+        'CCSK (Cloud Security Alliance)',
+        'CCNA (Cisco)',
+        'Microsoft AZ-900',
+        'PCEP (Python Institute)',
+        'Google IT Automation with Python',
+        'TryHackMe Learning Paths (Pre-Security, Jr PenTester, Red Teaming, CompTIA Pentest+)',
+      ],
+      ethicalHackingSkills: [
+        'Recon & enumeration',
+        'Web exploitation basics',
+        'Privilege escalation (Windows/Linux)',
+        'Lateral movement & post-exploitation',
+        'Adversary emulation (initial access → C2 → movement)',
+        'Reporting with IOCs & evidence',
+      ],
+    };
+
+    const A = (href, text) =>
+      `<a target="_blank" rel="noopener noreferrer" href="${href}">${text || href}</a>`;
 
     const safeMail = (mailtoUrl) => {
       try { window.location.href = mailtoUrl; }
       catch { window.open(mailtoUrl, '_self'); }
-      if (isVSCodeWebview) alert('For email links, open this page in a normal browser (Chrome/Edge/Firefox).');
+      if (isVSCodeWebview) alert('Open this page in a normal browser for email links (Chrome/Edge/Firefox).');
     };
 
-    // ---------- CONTACT FORM ----------
+    /* =========================
+       CONTACT FORM → MAILTO
+    ========================== */
     const form = document.getElementById('contactForm');
     if (form) {
       form.addEventListener('submit', function (e) {
@@ -366,13 +502,15 @@
         const email = document.getElementById('email').value.trim();
         const subject = document.getElementById('subject').value.trim() || 'Website contact';
         const message = document.getElementById('message').value.trim();
-        const body = `From: ${name} (${email})\n\n${message}`;
+        const body = `From: ${name} (${email})\\n\\n${message}`;
         safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
         this.reset();
       });
     }
 
-    // ---------- SMOOTH SCROLL ----------
+    /* =========================
+       NAV HELPERS
+    ========================== */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function (e) {
         const id = this.getAttribute('href');
@@ -384,8 +522,7 @@
       });
     });
 
-    // ---------- MOBILE MENU ----------
-    const menuBtn = document.querySelector('.menu-btn');
+    const menuBtn  = document.querySelector('.menu-btn');
     const navLinks = document.querySelector('.nav-links');
     if (menuBtn && navLinks) {
       menuBtn.addEventListener('click', () => {
@@ -393,16 +530,18 @@
       });
     }
 
-    // ---------- ORBITER CHATBOT ----------
-    const panel = document.getElementById('orbPanel');
-    const openBtn = document.getElementById('orbOpenBtn');
-    const closeBtn = document.getElementById('orbCloseBtn');
-    const msgs = document.getElementById('orbMsgs');
-    const input = document.getElementById('orbInput');
-    const sendBtn = document.getElementById('orbSend');
-    const emailBtn = document.getElementById('orbEmailBtn');
-    const contactBtn = document.getElementById('orbContactBtn');
-    const quick = document.getElementById('orbQuick');
+    /* =========================
+       AI-AGENT CHATBOT
+    ========================== */
+    const panel     = document.getElementById('orbPanel');
+    const openBtn   = document.getElementById('orbOpenBtn');
+    const closeBtn  = document.getElementById('orbCloseBtn');
+    const msgs      = document.getElementById('orbMsgs');
+    const input     = document.getElementById('orbInput');
+    const sendBtn   = document.getElementById('orbSend');
+    const emailBtn  = document.getElementById('orbEmailBtn');
+    const contactBtn= document.getElementById('orbContactBtn');
+    const quick     = document.getElementById('orbQuick');
 
     if (!panel || !openBtn || !closeBtn || !msgs || !input || !sendBtn) {
       console.warn('Orbiter: required elements not found.');
@@ -429,34 +568,130 @@
       msgs.appendChild(row);
       msgs.scrollTop = msgs.scrollHeight;
     }
-
-    function evidenceList() {
-      const items = [
-        { name: 'Network Security Scanner', url: 'https://github.com/Mangesh-Bhattacharya/network-scanner' },
-        { name: 'Cloud Security Automation', url: 'https://github.com/Mangesh-Bhattacharya/cloud-security' },
-        { name: 'Penetration Testing Toolkit', url: 'https://github.com/Mangesh-Bhattacharya/penetration-tools' },
-      ];
-      return items.map(i => `<b>${i.name}</b> — <a target="_blank" rel="noopener noreferrer" href="${i.url}">repo</a> · <a target="_blank" rel="noopener noreferrer" href="${i.url}/commits">commits</a>`).join('<br/>');
+    function typing(on) {
+      let el = document.getElementById('orbTyping');
+      if (on) {
+        if (!el) {
+          el = document.createElement('div');
+          el.id = 'orbTyping';
+          el.className = 'orb-row';
+          el.innerHTML = `<div class="orb-bubble orb-bot">typing…</div>`;
+          msgs.appendChild(el);
+        }
+        msgs.scrollTop = msgs.scrollHeight;
+      } else if (el) {
+        el.remove();
+      }
     }
 
-    function respond(q) {
+    /* ---- Live GitHub data (count, languages, links) ---- */
+    let ghCache = null;
+    async function fetchGitHub() {
+      if (ghCache) return ghCache;
+      const list = [];
+      let page = 1;
+      while (true) {
+        const res = await fetch(`https://api.github.com/users/Mangesh-Bhattacharya/repos?per_page=100&page=${page}&sort=updated`, {
+          headers: { Accept: 'application/vnd.github+json' },
+        });
+        if (!res.ok) break;
+        const arr = await res.json();
+        if (!Array.isArray(arr) || arr.length === 0) break;
+        list.push(...arr.filter(r => !r.fork));
+        if (arr.length < 100) break;
+        page++;
+      }
+      const repos = list.map(r => ({
+        name: r.name,
+        desc: r.description || '',
+        url:  r.html_url,
+        language: r.language || '',
+        updated: r.updated_at,
+        homepage: r.homepage || ''
+      }));
+      const count = repos.length;
+      const byLang = {};
+      repos.forEach(r => { if (r.language) byLang[r.language] = (byLang[r.language] || 0) + 1; });
+      ghCache = { repos, count, byLang };
+      return ghCache;
+    }
+    const formatRepos = (arr, n=5) =>
+      arr.slice(0, n).map(r =>
+        `<b>${r.name}</b>${r.language?` (${r.language})`:''}${r.desc?` — ${r.desc}`:''}. ` +
+        `${A(r.url, 'repo')} · ${A(r.url + '/commits', 'commits')}${r.homepage?` · ${A(r.homepage,'demo')}`:''}`
+      ).join('<br/>');
+
+    /* ---- AI-Agent response ---- */
+    async function agentRespond(q) {
       const t = q.toLowerCase();
-      if (/linkedin/.test(t)) return `LinkedIn: <a target="_blank" rel="noopener noreferrer" href="${ORB_LINKEDIN}">${ORB_LINKEDIN}</a>`;
-      if (/contact|email|reach|phone/.test(t)) return `Email <a href="mailto:${ORB_EMAIL}">${ORB_EMAIL}</a>`;
-      if (/project|repo|github|evidence|code/.test(t)) return evidenceList() + `<br/><br/>See more on <a target="_blank" rel="noopener noreferrer" href="${ORB_GITHUB}">GitHub</a>.`;
-      if (/tryhackme|red team|pre[^a-z]?security|ctf|hackathon/.test(t)) return `TryHackMe: <a target="_blank" rel="noopener noreferrer" href="${ORB_TRYHACKME}">${ORB_TRYHACKME}</a>`;
-      if (/education|seneca|humber|degree|diploma|college|university/.test(t)) return `<b>Seneca College</b> — Bachelor of IT (Cybersecurity)<br/><b>Humber College</b> — Network Engineering Diploma`;
-      if (/cert|ccna|ccsk|azure|pcep|google|coursera/.test(t)) return `Key certifications: CCSK, CCNA, AZ-900, Google IT Automation with Python, PCEP, TryHackMe learning paths.`;
-      if (/hello|hi|hey|help|who/.test(t)) return `Hi! I'm Orbiter. Ask about projects (with evidence), certifications, education (Seneca/Humber), TryHackMe, LinkedIn, or contact.`;
-      return `Try: "projects with evidence", "education", "LinkedIn", "TryHackMe", or "contact".`;
+
+      // Rich introduction (e.g., “Introduce Mangesh Bhattacharya”)
+      if (/who|about|introduce|speak about|tell me about|summary/.test(t)) {
+        const gh = await fetchGitHub().catch(()=>null);
+        const langs = gh
+          ? Object.entries(gh.byLang).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>`${k} (${v})`).join(', ')
+          : 'Python, Shell, misc.';
+        const repoLine = gh ? `He has <b>${gh.count}</b> public repositories on ${A(ORB_GITHUB,'GitHub')} (top languages: ${langs}).` : `See projects on ${A(ORB_GITHUB,'GitHub')}.`;
+        const highlights = gh ? `<br/><br/>Representative projects:<br/>${formatRepos(gh.repos,3)}` : '';
+
+        return `You're speaking with <b>Orbiter</b>, the portfolio assistant for <b>${KB.fullName}</b> — a ${KB.title}. ${KB.summary}
+<br/><br/>LinkedIn profile: ${A(ORB_LINKEDIN,'view profile')}.<br/>${repoLine}${highlights}
+<br/><br/><b>Hands-on & Hackathons</b>: TryHackMe ${A(ORB_TRYHACKME,'profile')} — completed learning paths: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).
+<br/><br/><b>Ethical-hacking skills</b>: ${KB.ethicalHackingSkills.join(', ')}.
+<br/><br/><b>Certifications</b>: ${KB.certifications.join(', ')}. Full, verified list on LinkedIn ${A(ORB_LINKEDIN,'here')}.
+<br/><br/><b>Education</b>: ${KB.education.map(e=>`${e.school} — ${e.program}`).join(' • ')}.`;
+      }
+
+      if (/linkedin|profile/.test(t)) {
+        return `LinkedIn: ${A(ORB_LINKEDIN)} — certifications, experience, and endorsements.`;
+      }
+
+      if (/project|repo|github|evidence|code|portfolio/.test(t)) {
+        const gh = await fetchGitHub().catch(()=>null);
+        if (!gh) return `See all projects on ${A(ORB_GITHUB,'GitHub')}.`;
+        return `Mangesh currently has <b>${gh.count}</b> public repositories. Highlights:<br/>${formatRepos(gh.repos,5)}<br/><br/>Explore everything on ${A(ORB_GITHUB,'GitHub')}.`;
+      }
+
+      if (/tryhackme|hackathon|ctf|red team/.test(t)) {
+        return `TryHackMe achievements: ${A(ORB_TRYHACKME,'profile')}.
+Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).`;
+      }
+
+      if (/cert|certification|ccna|ccsk|azure|pcep|google|coursera/.test(t)) {
+        return `Key certifications: ${KB.certifications.join(', ')}. See verified entries on LinkedIn: ${A(ORB_LINKEDIN,'profile')}.`;
+      }
+
+      if (/education|seneca|humber|degree|diploma|college|university/.test(t)) {
+        return KB.education.map(e => `<b>${e.school}</b> — ${e.program}`).join('<br/>');
+      }
+
+      if (/contact|email|reach|phone/.test(t)) {
+        return `Contact Mangesh via email: <a href="mailto:${ORB_EMAIL}">${ORB_EMAIL}</a>.`;
+      }
+
+      if (/help|options|what can you do/.test(t)) {
+        return `I can: introduce Mangesh, share LinkedIn, summarize projects from GitHub (with links), outline ethical-hacking skills, list certifications, detail education, and link TryHackMe achievements. Try: “Introduce Mangesh Bhattacharya”.`;
+      }
+
+      return `I can introduce Mangesh, link LinkedIn, count and summarize GitHub projects with evidence, describe ethical-hacking skills, list certifications, and share TryHackMe progress. Ask: “Introduce Mangesh Bhattacharya”.`;
     }
 
-    function send() {
+    async function send() {
       const q = input.value.trim(); if (!q) return;
       input.value = '';
       say('user', q);
-      say('bot', respond(q));
+      typing(true);
+      try {
+        const a = await agentRespond(q);
+        typing(false);
+        say('bot', a);
+      } catch (err) {
+        typing(false);
+        console.error(err);
+        say('bot', `Sorry—something went wrong fetching live data. You can view projects on ${A(ORB_GITHUB,'GitHub')}.`);
+      }
     }
+
     sendBtn.addEventListener('click', send);
     input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
 
@@ -472,18 +707,18 @@
     if (emailBtn) {
       emailBtn.addEventListener('click', () => {
         if (!history.length) return;
-        const lines = history.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n');
+        const lines = history.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\\n');
         safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Website chat transcript')}&body=${encodeURIComponent(lines)}`);
       });
     }
     if (contactBtn) {
       contactBtn.addEventListener('click', () => {
-        safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Inquiry from portfolio chatbot')}&body=${encodeURIComponent('Hi Mangesh,\n\nI have a quick question about your work.')}`);
+        safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Inquiry from portfolio chatbot')}&body=${encodeURIComponent('Hi Mangesh,\\n\\nI have a quick question about your work.')}`);
       });
     }
 
-    // Greeting
-    say('bot', `Hi! I'm <b>Orbiter</b>. Ask me about projects, certifications, education (Seneca, Humber), TryHackMe, LinkedIn, or how to contact Mangesh.`);
+    // Warm greeting
+    say('bot', `Hi! I'm <b>Orbiter</b>. Ask me to <i>Introduce Mangesh Bhattacharya</i> or try “projects with evidence”, “certifications”, “education”, or “TryHackMe”.`);
   });
   </script>
 </body>
