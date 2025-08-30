@@ -431,283 +431,460 @@
   </div>
 
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    /* =========================
-       CONFIG & KNOWLEDGE BASE
-    ========================== */
-    const ORB_EMAIL     = 'mangesh.bhattacharya@ontariotechu.ca';
-    const ORB_LINKEDIN  = 'https://www.linkedin.com/in/mangesh-bhattacharya/';
-    const ORB_GITHUB    = 'https://github.com/Mangesh-Bhattacharya';
-    const ORB_TRYHACKME = 'https://tryhackme.com/p/TheOrbiter';
-    const isVSCodeWebview = /webview|vscode/i.test(location.href);
+document.addEventListener('DOMContentLoaded', () => {
+  /* =========================
+     CONFIG & KNOWLEDGE BASE
+  ========================== */
+  const ORB_EMAIL     = 'mangesh.bhattacharya@ontariotechu.ca';
+  const ORB_LINKEDIN  = 'https://www.linkedin.com/in/mangesh-bhattacharya/';
+  const ORB_GITHUB    = 'https://github.com/Mangesh-Bhattacharya';
+  const ORB_TRYHACKME = 'https://tryhackme.com/p/TheOrbiter';
+  const isVSCodeWebview = /webview|vscode/i.test(location.href);
 
-    const KB = {
-      fullName: 'Mangesh Bhattacharya',
-      title: 'Cybersecurity & Cloud Professional',
-      summary:
-        'Focuses on detection engineering, red teaming, and cloud security. Builds automated detection pipelines, telemetry, and secure cloud configurations.',
-      education: [
-        { institution: 'University of Ontario Institute of Technology', program: 'Master of Information Technology Security - Artificial Intelligence'},
-        { institution: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
-        { institution: 'Humber College', program: 'Network Engineering Diploma' },
-      ],
-      certifications: [
-        'CCSK (Cloud Security Alliance)',
-        'CCNA (Cisco)',
-        'Microsoft AZ-900',
-        'PCEP (Python Institute)',
-        'Google IT Automation with Python',
-        'TryHackMe Learning Paths (Pre-Security, Jr PenTester, Red Teaming, CompTIA Pentest+)',
-      ],
-      ethicalHackingSkills: [
-        'Recon & enumeration',
-        'Web exploitation basics',
-        'Privilege escalation (Windows/Linux)',
-        'Lateral movement & post-exploitation',
-        'Adversary emulation (initial access → C2 → movement)',
-        'Reporting with IOCs & evidence',
-      ],
-    };
+  /* --- WhatsApp notify settings --- */
+  const ORB_WA_NUMBER     = '1XXXXXXXXXX'; // your phone in E.164, no '+' (e.g., 14165551234)
+  const ORB_WA_NOTIFY_URL = '';// e.g., 'https://your-worker.example.com/notify' (serverless webhook; leave empty to use fallback)
+  const WA_FALLBACK_LINK  = (msg) => `https://wa.me/${ORB_WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
-    const A = (href, text) =>
-      `<a target="_blank" rel="noopener noreferrer" href="${href}">${text || href}</a>`;
+  const KB = {
+    fullName: 'Mangesh Bhattacharya',
+    title: 'Cybersecurity & Cloud Professional',
+    summary:
+      'Focuses on detection engineering, red teaming, and cloud security. Builds automated detection pipelines, telemetry, and secure cloud configurations.',
+    education: [
+      { school: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
+      { school: 'Humber College', program: 'Network Engineering Diploma' },
+    ],
+    certifications: [
+      'CCSK (Cloud Security Alliance)',
+      'CCNA (Cisco)',
+      'Microsoft AZ-900',
+      'PCEP (Python Institute)',
+      'Google IT Automation with Python',
+      'TryHackMe Learning Paths (Pre-Security, Jr PenTester, Red Teaming, CompTIA Pentest+)',
+    ],
+    ethicalHackingSkills: [
+      'Recon & enumeration',
+      'Web exploitation basics',
+      'Privilege escalation (Windows/Linux)',
+      'Lateral movement & post-exploitation',
+      'Adversary emulation (initial access → C2 → movement)',
+      'Reporting with IOCs & evidence',
+    ],
+  };
 
-    const safeMail = (mailtoUrl) => {
-      try { window.location.href = mailtoUrl; }
-      catch { window.open(mailtoUrl, '_self'); }
-      if (isVSCodeWebview) alert('Open this page in a normal browser for email links (Chrome/Edge/Firefox).');
-    };
+  const A = (href, text) =>
+    `<a target="_blank" rel="noopener noreferrer" href="${href}">${text || href}</a>`;
 
-    /* =========================
-       CONTACT FORM → MAILTO
-    ========================== */
-    const form = document.getElementById('contactForm');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim() || 'Website contact';
-        const message = document.getElementById('message').value.trim();
-        const body = `From: ${name} (${email})\\n\\n${message}`;
-        safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
-        this.reset();
+  const safeMail = (mailtoUrl) => {
+    try { window.location.href = mailtoUrl; }
+    catch { window.open(mailtoUrl, '_self'); }
+    if (isVSCodeWebview) alert('Open this page in a normal browser for email links (Chrome/Edge/Firefox).');
+  };
+
+  /* =========================
+     CONTACT FORM → MAILTO + notify
+  ========================== */
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Website contact';
+      const message = document.getElementById('message').value.trim();
+      const body    = `From: ${name} (${email})\n\n${message}`;
+
+      /* email as today */
+      safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+
+      /* notify via WhatsApp webhook (best-effort) */
+      notifyOwner({
+        event: 'contact_form',
+        role: visitor.role || 'unknown',
+        name, email, subject, message,
       });
-    }
 
-    /* =========================
-       NAV HELPERS
-    ========================== */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', function (e) {
-        const id = this.getAttribute('href');
-        if (id === '#') return;
-        const el = document.querySelector(id);
-        if (!el) return;
-        e.preventDefault();
-        window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
-      });
+      this.reset();
     });
+  }
 
-    const menuBtn  = document.querySelector('.menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuBtn && navLinks) {
-      menuBtn.addEventListener('click', () => {
-        navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
+  /* =========================
+     NAV HELPERS
+  ========================== */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function (e) {
+      const id = this.getAttribute('href');
+      if (id === '#') return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    });
+  });
+
+  const menuBtn  = document.querySelector('.menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
+    });
+  }
+
+  /* =========================
+     AI-AGENT CHATBOT (Role-aware)
+  ========================== */
+  const panel      = document.getElementById('orbPanel');
+  const openBtn    = document.getElementById('orbOpenBtn');
+  const closeBtn   = document.getElementById('orbCloseBtn');
+  const msgs       = document.getElementById('orbMsgs');
+  const input      = document.getElementById('orbInput');
+  const sendBtn    = document.getElementById('orbSend');
+  const emailBtn   = document.getElementById('orbEmailBtn');
+  const contactBtn = document.getElementById('orbContactBtn');
+  const quick      = document.getElementById('orbQuick');
+
+  if (!panel || !openBtn || !closeBtn || !msgs || !input || !sendBtn) {
+    console.warn('Orbiter: required elements not found.');
+    return;
+  }
+
+  const visitor = { role: null };
+  const ROLE_OPTS = [
+    { key: 'recruiter', label: 'Recruiter' },
+    { key: 'hr',        label: 'HR' },
+    { key: 'ai',        label: 'Another AI' },
+    { key: 'other',     label: 'Other' },
+  ];
+  const ROLE_ALIASES = {
+    recruiter: ['recruiter', 'recruiters', 'talent', 'hiring manager'],
+    hr:        ['hr', 'human resources'],
+    ai:        ['ai', 'bot', 'assistant', 'automaton', 'automated system'],
+    other:     ['other', 'student', 'dev', 'engineer', 'guest', 'visitor'],
+  };
+
+  const history = [];
+  function say(role, html) {
+    history.push({ role, text: html.replace(/<[^>]*>/g, '') });
+    const row = document.createElement('div');
+    row.className = 'orb-row';
+    const bubble = document.createElement('div');
+    bubble.className = 'orb-bubble ' + (role === 'bot' ? 'orb-bot' : 'orb-user');
+    bubble.innerHTML = html;
+    row.appendChild(bubble);
+    msgs.appendChild(row);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function typing(on) {
+    let el = document.getElementById('orbTyping');
+    if (on) {
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'orbTyping';
+        el.className = 'orb-row';
+        el.innerHTML = `<div class="orb-bubble orb-bot">typing…</div>`;
+        msgs.appendChild(el);
+      }
+      msgs.scrollTop = msgs.scrollHeight;
+    } else if (el) {
+      el.remove();
+    }
+  }
+
+  /* Chip row helper */
+  function chipRow(buttons) {
+    const wrap = document.createElement('div');
+    wrap.className = 'orb-quick';
+    buttons.forEach(b => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'orb-chip';
+      btn.textContent = b.label;
+      if (b.dataset) Object.entries(b.dataset).forEach(([k,v]) => btn.dataset[k] = v);
+      btn.addEventListener('click', b.onClick);
+      wrap.appendChild(btn);
+    });
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+    return wrap;
+  }
+
+  function showPanel() { panel.style.display = 'flex'; input.focus(); if (!visitor.role) promptForRole(); }
+  function hidePanel() { panel.style.display = 'none'; }
+
+  openBtn.addEventListener('click', showPanel);
+  closeBtn.addEventListener('click', hidePanel);
+  panel.addEventListener('click', (e) => { if (e.target === panel) hidePanel(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hidePanel(); });
+
+  /* ---- Live GitHub data (count, languages, links) ---- */
+  let ghCache = null;
+  async function fetchGitHub() {
+    if (ghCache) return ghCache;
+    const list = [];
+    let page = 1;
+    while (true) {
+      const res = await fetch(`https://api.github.com/users/Mangesh-Bhattacharya/repos?per_page=100&page=${page}&sort=updated`, {
+        headers: { Accept: 'application/vnd.github+json' },
       });
+      if (!res.ok) break;
+      const arr = await res.json();
+      if (!Array.isArray(arr) || arr.length === 0) break;
+      list.push(...arr.filter(r => !r.fork));
+      if (arr.length < 100) break;
+      page++;
+    }
+    const repos = list.map(r => ({
+      name: r.name,
+      desc: r.description || '',
+      url:  r.html_url,
+      language: r.language || '',
+      updated: r.updated_at,
+      homepage: r.homepage || ''
+    }));
+    const count = repos.length;
+    const byLang = {};
+    repos.forEach(r => { if (r.language) byLang[r.language] = (byLang[r.language] || 0) + 1; });
+    ghCache = { repos, count, byLang };
+    return ghCache;
+  }
+  const formatRepos = (arr, n=5) =>
+    arr.slice(0, n).map(r =>
+      `<b>${r.name}</b>${r.language?` (${r.language})`:''}${r.desc?` — ${r.desc}`:''}. ` +
+      `${A(r.url, 'repo')} · ${A(r.url + '/commits', 'commits')}${r.homepage?` · ${A(r.homepage,'demo')}`:''}`
+    ).join('<br/>');
+
+  /* =========================
+     Role onboarding
+  ========================== */
+  function promptForRole() {
+    say('bot', `<b>Welcome.</b> To guide you properly, please choose your role:`);
+    chipRow(ROLE_OPTS.map(o => ({
+      label: o.label,
+      dataset: { role: o.key },
+      onClick: () => setRole(o.key)
+    })));
+  }
+
+  function setRole(key) {
+    visitor.role = key;
+    say('bot', `Thank you. I’ll tailor responses for <b>${ROLE_OPTS.find(r => r.key===key).label}</b>.`);
+    notifyOwner({ event: 'role_set', role: visitor.role, page: location.href, title: document.title });
+    renderSuggestionsForRole();
+  }
+
+  function renderSuggestionsForRole() {
+    const role = visitor.role || 'other';
+    const buttons = {
+      recruiter: [
+        {label:'Summary (1 min)', q:'Introduce Mangesh succinctly'},
+        {label:'Resume (PDF link)', q:'Share resume link'},
+        {label:'Projects w/ evidence', q:'Show projects with links and evidence'},
+        {label:'Certifications', q:'List certifications with issuers'},
+        {label:'Availability', q:'What is your current availability?'},
+      ],
+      hr: [
+        {label:'Experience snapshot', q:'Summarize experience and skills'},
+        {label:'Education', q:'What did you study at Seneca and Humber?'},
+        {label:'Cert verifications', q:'Where can I verify certifications?'},
+        {label:'Contact options', q:'How do I contact you?'},
+      ],
+      ai: [
+        {label:'Machine-readable profile', q:'Provide JSON profile'},
+        {label:'Public repos summary', q:'Summarize GitHub repositories'},
+        {label:'TryHackMe stats', q:'Show TryHackMe achievements'},
+        {label:'Links', q:'Share LinkedIn and GitHub'},
+      ],
+      other: [
+        {label:'Introduction', q:'Introduce Mangesh Bhattacharya'},
+        {label:'Projects', q:'Show projects with links and evidence'},
+        {label:'TryHackMe', q:'Show TryHackMe achievements'},
+        {label:'LinkedIn', q:'Share your LinkedIn'},
+      ]
+    }[role];
+
+    chipRow(buttons.map(b => ({
+      label: b.label,
+      onClick: () => { input.value = b.q; send(); }
+    })));
+  }
+
+  function roleFromMessage(text) {
+    const t = text.toLowerCase();
+    for (const [key, arr] of Object.entries(ROLE_ALIASES)) {
+      if (arr.some(a => t.includes(a))) return key;
+    }
+    return null;
+  }
+
+  /* =========================
+     Professional, organized responses
+  ========================== */
+  async function agentRespond(q) {
+    const t = q.toLowerCase();
+
+    if (/^(hi|hello|hey)\b/.test(t) && !visitor.role) {
+      promptForRole();
+      return '';
     }
 
-    /* =========================
-       AI-AGENT CHATBOT
-    ========================== */
-    const panel     = document.getElementById('orbPanel');
-    const openBtn   = document.getElementById('orbOpenBtn');
-    const closeBtn  = document.getElementById('orbCloseBtn');
-    const msgs      = document.getElementById('orbMsgs');
-    const input     = document.getElementById('orbInput');
-    const sendBtn   = document.getElementById('orbSend');
-    const emailBtn  = document.getElementById('orbEmailBtn');
-    const contactBtn= document.getElementById('orbContactBtn');
-    const quick     = document.getElementById('orbQuick');
+    if (/linkedin/.test(t)) {
+      return `<b>LinkedIn</b><br/>${A(ORB_LINKEDIN, 'View profile')} for verified certifications, experience, and endorsements.`;
+    }
 
-    if (!panel || !openBtn || !closeBtn || !msgs || !input || !sendBtn) {
-      console.warn('Orbiter: required elements not found.');
+    if (/tryhackme|red team|ctf|hack/.test(t)) {
+      return `<b>TryHackMe</b><br/>Profile: ${A(ORB_TRYHACKME, 'View')}.
+<b>Learning paths</b>: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025), Advanced Endpoint Investigations (Jul 2025), DevSecOps (Jul 2025).`;
+    }
+
+    if (/cert|certification|ccna|ccsk|azure|pcep|google/.test(t)) {
+      return `<b>Certifications</b><br/>${KB.certifications.join(' • ')}<br/>Verified on LinkedIn: ${A(ORB_LINKEDIN, 'profile')}.`;
+    }
+
+    if (/education|seneca|humber|degree|diploma|college|university/.test(t)) {
+      return `<b>Education</b><br/>${KB.education.map(e => `<b>${e.school}</b> — ${e.program}`).join('<br/>')}`;
+    }
+
+    if (/resume/.test(t)) {
+      return `<b>Resume</b><br/>Please use the LinkedIn “Download PDF” or contact me for the latest PDF. Quick contact: <a href="mailto:${ORB_EMAIL}">${ORB_EMAIL}</a>.`;
+    }
+
+    if (/contact|email|reach|phone/.test(t)) {
+      return `<b>Contact</b><br/>Email: <a href="mailto:${ORB_EMAIL}">${ORB_EMAIL}</a><br/>LinkedIn: ${A(ORB_LINKEDIN)}<br/>GitHub: ${A(ORB_GITHUB)}`;
+    }
+
+    if (/json profile|machine[- ]readable|api/.test(t)) {
+      const json = {
+        name: KB.fullName,
+        title: KB.title,
+        skills: KB.ethicalHackingSkills,
+        certifications: KB.certifications,
+        links: { linkedin: ORB_LINKEDIN, github: ORB_GITHUB, tryhackme: ORB_TRYHACKME, email: ORB_EMAIL }
+      };
+      return `<b>Machine-readable profile</b><br/><pre style="white-space:pre-wrap">${JSON.stringify(json, null, 2)}</pre>`;
+    }
+
+    if (/project|repo|github|evidence|code|portfolio/.test(t)) {
+      const gh = await fetchGitHub().catch(()=>null);
+      if (!gh) return `See all projects on ${A(ORB_GITHUB,'GitHub')}.`;
+      const langs = Object.entries(gh.byLang).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>`${k} (${v})`).join(', ');
+      return `<b>Projects (evidence-first)</b><br/>Public repositories: <b>${gh.count}</b> (top languages: ${langs}).<br/><br/>${formatRepos(gh.repos,5)}<br/><br/>Explore more on ${A(ORB_GITHUB,'GitHub')}.`;
+    }
+
+    if (/introduce|summary|about you|who are you/.test(t)) {
+      const gh = await fetchGitHub().catch(()=>null);
+      const langs = gh ? Object.entries(gh.byLang).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>`${k} (${v})`).join(', ') : '';
+      const repoLine = gh ? `He has <b>${gh.count}</b> public repositories (top languages: ${langs}).` : `See projects on ${A(ORB_GITHUB,'GitHub')}.`;
+      return `<b>${KB.fullName}</b> — ${KB.title}<br/>${KB.summary}<br/><br/>${repoLine}<br/>TryHackMe: ${A(ORB_TRYHACKME,'profile')}.<br/>LinkedIn: ${A(ORB_LINKEDIN,'view profile')}.`;
+    }
+
+    /* Role-based default guidance */
+    switch (visitor.role) {
+      case 'recruiter':
+        return `<b>Recommended for recruiters</b><br/>• ${A(ORB_LINKEDIN,'LinkedIn (verified)')}<br/>• ${A(ORB_GITHUB,'GitHub (evidence)')}<br/>• Ask for: “Projects w/ evidence”, “Availability”, or “Certifications”.`;
+      case 'hr':
+        return `<b>Recommended for HR</b><br/>• Experience/skills summary<br/>• Education details (Seneca/Humber)<br/>• Certification verification on LinkedIn.`;
+      case 'ai':
+        return `<b>Recommended for AI agents</b><br/>• “Machine-readable profile” for JSON<br/>• “Public repos summary” for evidence links<br/>• “TryHackMe stats”.`;
+      default:
+        return `I can introduce Mangesh, show projects with evidence, list certifications, share education, and provide contact options. Try: “Introduce Mangesh Bhattacharya”.`;
+    }
+  }
+
+  /* =========================
+     Send + role routing + notify
+  ========================== */
+  async function send() {
+    const q = input.value.trim(); if (!q) return;
+    input.value = '';
+    say('user', q);
+
+    /* if user typed their role directly */
+    if (!visitor.role) {
+      const inferred = roleFromMessage(q);
+      if (inferred) {
+        setRole(inferred);
+        return;
+      }
+      promptForRole();
       return;
     }
 
-    function showPanel() { panel.style.display = 'flex'; input.focus(); }
-    function hidePanel() { panel.style.display = 'none'; }
-
-    openBtn.addEventListener('click', showPanel);
-    closeBtn.addEventListener('click', hidePanel);
-    panel.addEventListener('click', (e) => { if (e.target === panel) hidePanel(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hidePanel(); });
-
-    const history = [];
-    function say(role, html) {
-      history.push({ role, text: html.replace(/<[^>]*>/g, '') });
-      const row = document.createElement('div');
-      row.className = 'orb-row';
-      const bubble = document.createElement('div');
-      bubble.className = 'orb-bubble ' + (role === 'bot' ? 'orb-bot' : 'orb-user');
-      bubble.innerHTML = html;
-      row.appendChild(bubble);
-      msgs.appendChild(row);
-      msgs.scrollTop = msgs.scrollHeight;
+    typing(true);
+    try {
+      const ans = await agentRespond(q);
+      typing(false);
+      if (ans) say('bot', ans);
+      /* Notify owner best-effort */
+      notifyOwner({ event: 'new_question', role: visitor.role, question: q, page: location.href, title: document.title });
+    } catch (err) {
+      typing(false);
+      console.error(err);
+      say('bot', `Sorry—something went wrong fetching live data. You can view projects on ${A(ORB_GITHUB,'GitHub')}.`);
     }
-    function typing(on) {
-      let el = document.getElementById('orbTyping');
-      if (on) {
-        if (!el) {
-          el = document.createElement('div');
-          el.id = 'orbTyping';
-          el.className = 'orb-row';
-          el.innerHTML = `<div class="orb-bubble orb-bot">typing…</div>`;
-          msgs.appendChild(el);
-        }
-        msgs.scrollTop = msgs.scrollHeight;
-      } else if (el) {
-        el.remove();
-      }
-    }
+  }
 
-    /* ---- Live GitHub data (count, languages, links) ---- */
-    let ghCache = null;
-    async function fetchGitHub() {
-      if (ghCache) return ghCache;
-      const list = [];
-      let page = 1;
-      while (true) {
-        const res = await fetch(`https://api.github.com/users/Mangesh-Bhattacharya/repos?per_page=100&page=${page}&sort=updated`, {
-          headers: { Accept: 'application/vnd.github+json' },
-        });
-        if (!res.ok) break;
-        const arr = await res.json();
-        if (!Array.isArray(arr) || arr.length === 0) break;
-        list.push(...arr.filter(r => !r.fork));
-        if (arr.length < 100) break;
-        page++;
-      }
-      const repos = list.map(r => ({
-        name: r.name,
-        desc: r.description || '',
-        url:  r.html_url,
-        language: r.language || '',
-        updated: r.updated_at,
-        homepage: r.homepage || ''
-      }));
-      const count = repos.length;
-      const byLang = {};
-      repos.forEach(r => { if (r.language) byLang[r.language] = (byLang[r.language] || 0) + 1; });
-      ghCache = { repos, count, byLang };
-      return ghCache;
-    }
-    const formatRepos = (arr, n=5) =>
-      arr.slice(0, n).map(r =>
-        `<b>${r.name}</b>${r.language?` (${r.language})`:''}${r.desc?` — ${r.desc}`:''}. ` +
-        `${A(r.url, 'repo')} · ${A(r.url + '/commits', 'commits')}${r.homepage?` · ${A(r.homepage,'demo')}`:''}`
-      ).join('<br/>');
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
 
-    /* ---- AI-Agent response ---- */
-    async function agentRespond(q) {
-      const t = q.toLowerCase();
+  if (quick) {
+    quick.addEventListener('click', (e) => {
+      const btn = e.target.closest('.orb-chip');
+      if (!btn) return;
+      input.value = btn.getAttribute('data-q') || '';
+      send();
+    });
+  }
 
-      // Rich introduction (e.g., “Introduce Mangesh Bhattacharya”)
-      if (/who|about|introduce|speak about|tell me about|summary/.test(t)) {
-        const gh = await fetchGitHub().catch(()=>null);
-        const langs = gh
-          ? Object.entries(gh.byLang).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>`${k} (${v})`).join(', ')
-          : 'Python, Shell, misc.';
-        const repoLine = gh ? `He has <b>${gh.count}</b> public repositories on ${A(ORB_GITHUB,'GitHub')} (top languages: ${langs}).` : `See projects on ${A(ORB_GITHUB,'GitHub')}.`;
-        const highlights = gh ? `<br/><br/>Representative projects:<br/>${formatRepos(gh.repos,3)}` : '';
+  if (emailBtn) {
+    emailBtn.addEventListener('click', () => {
+      if (!history.length) return;
+      const lines = history.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n');
+      safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Website chat transcript')}&body=${encodeURIComponent(lines)}`);
+    });
+  }
+  if (contactBtn) {
+    contactBtn.addEventListener('click', () => {
+      safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Inquiry from portfolio chatbot')}&body=${encodeURIComponent('Hi Mangesh,\n\nI have a quick question about your work.')}`);
+    });
+  }
 
-        return `You're speaking with <b>Orbiter</b>, the portfolio assistant for <b>${KB.fullName}</b> — a ${KB.title}. ${KB.summary}
-<br/><br/>LinkedIn profile: ${A(ORB_LINKEDIN,'view profile')}.<br/>${repoLine}${highlights}
-<br/><br/><b>Hands-on & Hackathons</b>: TryHackMe ${A(ORB_TRYHACKME,'profile')} — completed learning paths: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).
-<br/><br/><b>Ethical-hacking skills</b>: ${KB.ethicalHackingSkills.join(', ')}.
-<br/><br/><b>Certifications</b>: ${KB.certifications.join(', ')}. Full, verified list on LinkedIn ${A(ORB_LINKEDIN,'here')}.
-<br/><br/><b>Education</b>: ${KB.education.map(e=>`${e.institution} — ${e.program}`).join(' • ')}.`;
-      }
+  /* =========================
+     WhatsApp Notify (serverless webhook + fallback)
+  ========================== */
+  function notifyOwner(payload) {
+    const summary = [
+      `Site: ${document.title}`,
+      `URL: ${location.href}`,
+      `Event: ${payload.event}`,
+      `Role: ${payload.role || 'unknown'}`,
+      payload.question ? `Question: ${payload.question}` : '',
+      payload.name ? `Name: ${payload.name}` : '',
+      payload.email ? `Email: ${payload.email}` : '',
+      payload.subject ? `Subject: ${payload.subject}` : '',
+      payload.message ? `Message: ${payload.message}` : '',
+      `Time: ${new Date().toISOString()}`
+    ].filter(Boolean).join('\n');
 
-      if (/linkedin|profile/.test(t)) {
-        return `LinkedIn: ${A(ORB_LINKEDIN)} — certifications, experience, and endorsements.`;
-      }
-
-      if (/project|repo|github|evidence|code|portfolio/.test(t)) {
-        const gh = await fetchGitHub().catch(()=>null);
-        if (!gh) return `See all projects on ${A(ORB_GITHUB,'GitHub')}.`;
-        return `Mangesh currently has <b>${gh.count}</b> public repositories. Highlights:<br/>${formatRepos(gh.repos,5)}<br/><br/>Explore everything on ${A(ORB_GITHUB,'GitHub')}.`;
-      }
-
-      if (/tryhackme|hackathon|ctf|red team/.test(t)) {
-        return `TryHackMe achievements: ${A(ORB_TRYHACKME,'profile')}.
-        Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).`;
-      }
-
-      if (/cert|certification|ccna|ccsk|azure|pcep|google|coursera/.test(t)) {
-        return `Key certifications: ${KB.certifications.join(', ')}. See verified entries on LinkedIn: ${A(ORB_LINKEDIN,'profile')}.`;
-      }
-
-      if (/education|seneca|humber|degree|diploma|college|university/.test(t)) {
-        return KB.education.map(e => `<b>${e.institution}</b> — ${e.program}`).join('<br/>');
-      }
-
-      if (/contact|email|reach|phone/.test(t)) {
-        return `Contact Mangesh via email: <a href="mailto:${ORB_EMAIL}">${ORB_EMAIL}</a>.`;
-      }
-
-      if (/help|options|what can you do/.test(t)) {
-        return `I can: introduce Mangesh, share LinkedIn, summarize projects from GitHub (with links), outline ethical-hacking skills, list certifications, detail education, and link TryHackMe achievements. Try: “Introduce Mangesh Bhattacharya”.`;
-      }
-
-      return `I can introduce Mangesh, link LinkedIn, count and summarize GitHub projects with evidence, describe ethical-hacking skills, list certifications, and share TryHackMe progress. Ask: “Introduce Mangesh Bhattacharya”.`;
-    }
-
-    async function send() {
-      const q = input.value.trim(); if (!q) return;
-      input.value = '';
-      say('user', q);
-      typing(true);
-      try {
-        const a = await agentRespond(q);
-        typing(false);
-        say('bot', a);
-      } catch (err) {
-        typing(false);
-        console.error(err);
-        say('bot', `Sorry—something went wrong fetching live data. You can view projects on ${A(ORB_GITHUB,'GitHub')}.`);
-      }
-    }
-
-    sendBtn.addEventListener('click', send);
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
-
-    if (quick) {
-      quick.addEventListener('click', (e) => {
-        const btn = e.target.closest('.orb-chip');
-        if (!btn) return;
-        input.value = btn.getAttribute('data-q') || '';
-        send();
+    if (ORB_WA_NOTIFY_URL) {
+      fetch(ORB_WA_NOTIFY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ to: ORB_WA_NUMBER, text: summary })
+      }).catch(() => {
+        /* silent failover to in-chat call-to-action */
+        say('bot', `Heads-up: couldn’t reach the WhatsApp notifier. You can ping me directly here: ${A(WA_FALLBACK_LINK(summary), 'Notify on WhatsApp')}.`);
       });
+    } else {
+      /* No webhook configured: offer a CTA link */
+      say('bot', `You can notify me instantly here: ${A(WA_FALLBACK_LINK(summary), 'Notify on WhatsApp')}.`);
     }
+  }
 
-    if (emailBtn) {
-      emailBtn.addEventListener('click', () => {
-        if (!history.length) return;
-        const lines = history.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\\n');
-        safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Website chat transcript')}&body=${encodeURIComponent(lines)}`);
-        
-      });
-    }
-    if (contactBtn) {
-      contactBtn.addEventListener('click', () => {
-        safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Inquiry from portfolio chatbot')}&body=${encodeURIComponent('Hi Mangesh,\\n\\nI have a quick question about your work.')}`);
-      });
-    }
-
-    // Warm greeting
-    say('bot', `Hi! I'm <b>Orbi</b>. Ask me to <i>Introduce Mangesh Bhattacharya</i> or try “projects with evidence”, “certifications”, “education”, or “TryHackMe”.`);
-  });
-  </script>
+  /* Warm, professional greeting + immediate role prompt */
+  say('bot', `<b>Orbiter</b> — Portfolio Assistant.<br/><span class="orb-note">I can introduce Mangesh, show projects with evidence, list certifications, share education, and provide contact options.</span>`);
+  promptForRole();
+});
+</script>
 </body>
 </html>
