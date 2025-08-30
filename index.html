@@ -146,6 +146,7 @@
     .orb-quick { display: flex; flex-wrap: wrap; gap: 8px; padding: 6px 12px; }
     .orb-chip { font-size: 12px; border: 1px solid rgba(255,255,255,.12); color: #dff; background: rgba(255,255,255,.05); border-radius: 999px; padding: 6px 8px; cursor: pointer; }
     .orb-input { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,.08); }
+    .orb-note { opacity:.9; font-size:12px; color:#cfe; }
     .orb-text { flex: 1; background: #0b1220; border: 1px solid #203040; color: #e8fbff; border-radius: 10px; padding: 10px; }
     .orb-send { background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal)); color: white; border: none; border-radius: 10px; padding: 10px 12px; cursor: pointer; }
     .orb-actions { display: flex; gap: 8px; padding: 0 12px 10px; }
@@ -442,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isVSCodeWebview = /webview|vscode/i.test(location.href);
 
   /* --- WhatsApp notify settings --- */
-  const ORB_WA_NUMBER     = '1XXXXXXXXXX'; // your phone in E.164, no '+' (e.g., 14165551234)
+  const ORB_WA_NUMBER     = '14166701418'; // your phone in E.164, no '+' (e.g., 14165551234)
   const ORB_WA_NOTIFY_URL = '';// e.g., 'https://your-worker.example.com/notify' (serverless webhook; leave empty to use fallback)
   const WA_FALLBACK_LINK  = (msg) => `https://wa.me/${ORB_WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
@@ -452,8 +453,9 @@ document.addEventListener('DOMContentLoaded', () => {
     summary:
       'Focuses on detection engineering, red teaming, and cloud security. Builds automated detection pipelines, telemetry, and secure cloud configurations.',
     education: [
-      { school: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
-      { school: 'Humber College', program: 'Network Engineering Diploma' },
+      { institution: 'University of Ontario Institute Technology (UOIT)', program: 'Master of Information Technology Security - AI' },
+      { institution: 'Seneca Polytechnic', program: 'Bachelor of Information Technology — Cybersecurity' },
+      { institution: 'Humber Polytechnic', program: 'Network Engineering Diploma' },
     ],
     certifications: [
       'CCSK (Cloud Security Alliance)',
@@ -461,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Microsoft AZ-900',
       'PCEP (Python Institute)',
       'Google IT Automation with Python',
-      'TryHackMe Learning Paths (Pre-Security, Jr PenTester, Red Teaming, CompTIA Pentest+)',
+      'TryHackMe Learning Paths (Advanced Endpoint Investigations, DevSecOps, CompTIA Pentest+, Jr PenTester, Red Teaming)',
     ],
     ethicalHackingSkills: [
       'Recon & enumeration',
