@@ -497,8 +497,9 @@
       summary:
         'Focuses on detection engineering, red teaming, and cloud security. Builds automated detection pipelines, telemetry, and secure cloud configurations.',
       education: [
-        { school: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
-        { school: 'Humber College', program: 'Network Engineering Diploma' },
+        { institution: 'University of Ontario Institute of Technology', program: 'Master of Information Technology Security - Artificial Intelligence'},
+        { institution: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
+        { institution: 'Humber College', program: 'Network Engineering Diploma' },
       ],
       certifications: [
         'CCSK (Cloud Security Alliance)',
@@ -675,7 +676,7 @@
 <br/><br/><b>Hands-on & Hackathons</b>: TryHackMe ${A(ORB_TRYHACKME,'profile')} — completed learning paths: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).
 <br/><br/><b>Ethical-hacking skills</b>: ${KB.ethicalHackingSkills.join(', ')}.
 <br/><br/><b>Certifications</b>: ${KB.certifications.join(', ')}. Full, verified list on LinkedIn ${A(ORB_LINKEDIN,'here')}.
-<br/><br/><b>Education</b>: ${KB.education.map(e=>`${e.school} — ${e.program}`).join(' • ')}.`;
+<br/><br/><b>Education</b>: ${KB.education.map(e=>`${e.institution} — ${e.program}`).join(' • ')}.`;
       }
 
       if (/linkedin|profile/.test(t)) {
@@ -690,7 +691,7 @@
 
       if (/tryhackme|hackathon|ctf|red team/.test(t)) {
         return `TryHackMe achievements: ${A(ORB_TRYHACKME,'profile')}.
-Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).`;
+        Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).`;
       }
 
       if (/cert|certification|ccna|ccsk|azure|pcep|google|coursera/.test(t)) {
@@ -698,7 +699,7 @@ Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester
       }
 
       if (/education|seneca|humber|degree|diploma|college|university/.test(t)) {
-        return KB.education.map(e => `<b>${e.school}</b> — ${e.program}`).join('<br/>');
+        return KB.education.map(e => `<b>${e.institution}</b> — ${e.program}`).join('<br/>');
       }
 
       if (/contact|email|reach|phone/.test(t)) {
@@ -745,6 +746,7 @@ Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester
         if (!history.length) return;
         const lines = history.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\\n');
         safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Website chat transcript')}&body=${encodeURIComponent(lines)}`);
+        
       });
     }
     if (contactBtn) {
@@ -761,9 +763,12 @@ Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester
 </html>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 
 
 >>>>>>> 1ebf025f5b880d4752a261517772ce839c0a3f48
+=======
+>>>>>>> origin/main
