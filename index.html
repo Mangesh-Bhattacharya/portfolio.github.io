@@ -264,6 +264,36 @@
           </div>
         </div>
         <div class="cert-card">
+        <div class="cert-content">
+            <div class="cert-icon"><i class="fab fa-ibm"></i></div>
+            <h3 class="cert-title">IBM AI Engineering Professional Certification (V2)</h3>
+            <span class="cert-org">IBM</span>
+            <div class="cert-date">August 2023</div>
+            <p class="cert-desc">Comprehensive understanding of machine learning and deep learning, covering algorithms, neural networks, computer vision, natural language processing, and the development of generative AI models.</p>
+            <a href="#" class="btn">View Certificate</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-content">
+            <div class="cert-icon"><i class="fab fa-csa"></i></div>
+            <h3 class="cert-title">Certificate of Cloud Security Knowledge v.4</h3>
+            <span class="cert-org">Cloud Security Alliance</span>
+            <div class="cert-date">June 2023</div>
+            <p class="cert-desc">Knowledge of Cloud Control Matrix, Cloud Security Guidance, and the ENISA white paper.</p>
+            <a href="#" class="btn">View Certificate</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-content">
+            <div class="cert-icon"><i class="fab fa-pcep"></i></div>
+            <h3 class="cert-title">[PCEP-30-01]Certified Entry-Level Python Programmer (PCEP)</h3>
+            <span class="cert-org">Python Institute</span>
+            <div class="cert-date">July 2021</div>
+            <p class="cert-desc">Knowledge of universal concept of computer programming, the syntax and semantics of Python language and the practical application of the Python Standard Library to solve common coding tasks.</p>
+            <a href="#" class="btn">View Certificate</a>
+          </div>
+        </div>
+        </div class="cert-card">
           <div class="cert-content">
             <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
             <h3 class="cert-title">Microsoft Azure Fundamentals</h3>
@@ -485,8 +515,9 @@
       summary:
         'Focuses on detection engineering, red teaming, and cloud security. Builds automated detection pipelines, telemetry, and secure cloud configurations.',
       education: [
-        { school: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
-        { school: 'Humber College', program: 'Network Engineering Diploma' },
+        { institution: 'University of Ontario Institute of Technology', program: 'Master of Information Technology Security - Artificial Intelligence'},
+        { institution: 'Seneca College', program: 'Bachelor of IT — Cybersecurity' },
+        { institution: 'Humber College', program: 'Network Engineering Diploma' },
       ],
       certifications: [
         'CCSK (Cloud Security Alliance)',
@@ -663,7 +694,7 @@
 <br/><br/><b>Hands-on & Hackathons</b>: TryHackMe ${A(ORB_TRYHACKME,'profile')} — completed learning paths: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).
 <br/><br/><b>Ethical-hacking skills</b>: ${KB.ethicalHackingSkills.join(', ')}.
 <br/><br/><b>Certifications</b>: ${KB.certifications.join(', ')}. Full, verified list on LinkedIn ${A(ORB_LINKEDIN,'here')}.
-<br/><br/><b>Education</b>: ${KB.education.map(e=>`${e.school} — ${e.program}`).join(' • ')}.`;
+<br/><br/><b>Education</b>: ${KB.education.map(e=>`${e.institution} — ${e.program}`).join(' • ')}.`;
       }
 
       if (/linkedin|profile/.test(t)) {
@@ -678,7 +709,7 @@
 
       if (/tryhackme|hackathon|ctf|red team/.test(t)) {
         return `TryHackMe achievements: ${A(ORB_TRYHACKME,'profile')}.
-Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).`;
+        Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester (Dec 2024), Red Teaming (Jul 2024), CompTIA Pentest+ (Mar 2025).`;
       }
 
       if (/cert|certification|ccna|ccsk|azure|pcep|google|coursera/.test(t)) {
@@ -686,7 +717,7 @@ Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester
       }
 
       if (/education|seneca|humber|degree|diploma|college|university/.test(t)) {
-        return KB.education.map(e => `<b>${e.school}</b> — ${e.program}`).join('<br/>');
+        return KB.education.map(e => `<b>${e.institution}</b> — ${e.program}`).join('<br/>');
       }
 
       if (/contact|email|reach|phone/.test(t)) {
@@ -733,6 +764,7 @@ Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester
         if (!history.length) return;
         const lines = history.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\\n');
         safeMail(`mailto:${ORB_EMAIL}?subject=${encodeURIComponent('Website chat transcript')}&body=${encodeURIComponent(lines)}`);
+        
       });
     }
     if (contactBtn) {
@@ -747,9 +779,3 @@ Completed learning paths include: Pre-Security (Jan 2025), Jr Penetration Tester
   </script>
 </body>
 </html>
-
-
-
-
-
-
